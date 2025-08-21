@@ -1,0 +1,25 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+issueTrackerURL = "https://github.com/rikkamus/client-chat-channels/issues"
+license = "MIT"
+
+[[mods]]
+modId = "clientchatchannels"
+version = "${version}"
+displayName = "Client Chat Channels"
+authors = "rikkamus"
+description = "Adds proximity-based chat channels to the game."
+
+[[dependencies.clientchatchannels]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.0,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.clientchatchannels]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21,1.22)"
+ordering = "NONE"
+side = "BOTH"
