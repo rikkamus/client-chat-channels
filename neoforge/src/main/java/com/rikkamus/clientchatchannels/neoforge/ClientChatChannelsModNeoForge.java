@@ -60,7 +60,8 @@ public class ClientChatChannelsModNeoForge {
 
         // Register /channel direct
         event.getDispatcher().register(Commands.literal("channel").then(Commands.literal("direct").executes(context -> {
-            if (this.dispatcher.trySetDirectChannelToNearestPlayer()) this.dispatcher.printStatusToChat(false);
+            this.dispatcher.trySetDirectChannelToNearestPlayer();
+            this.dispatcher.printStatusToChat(false);
             return Command.SINGLE_SUCCESS;
         })));
 
@@ -85,7 +86,8 @@ public class ClientChatChannelsModNeoForge {
         }
 
         if (ClientChatChannelsMod.getDirectChannelKeyMapping().consumeClick()) {
-            if (this.dispatcher.trySetDirectChannelToNearestPlayer()) this.dispatcher.printStatusToChat(false);
+            this.dispatcher.trySetDirectChannelToNearestPlayer();
+            this.dispatcher.printStatusToChat(false);
         }
     }
 

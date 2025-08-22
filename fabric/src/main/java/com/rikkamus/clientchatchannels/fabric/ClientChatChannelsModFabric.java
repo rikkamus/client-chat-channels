@@ -55,7 +55,8 @@ public class ClientChatChannelsModFabric implements ClientModInitializer {
 
             // Register /channel direct
             dispatcher.register(ClientCommandManager.literal("channel").then(ClientCommandManager.literal("direct").executes(context -> {
-                if (this.dispatcher.trySetDirectChannelToNearestPlayer()) this.dispatcher.printStatusToChat(false);
+                this.dispatcher.trySetDirectChannelToNearestPlayer();
+                this.dispatcher.printStatusToChat(false);
                 return Command.SINGLE_SUCCESS;
             })));
 
@@ -79,7 +80,8 @@ public class ClientChatChannelsModFabric implements ClientModInitializer {
             }
 
             if (ClientChatChannelsMod.getDirectChannelKeyMapping().consumeClick()) {
-                if (this.dispatcher.trySetDirectChannelToNearestPlayer()) this.dispatcher.printStatusToChat(false);
+                this.dispatcher.trySetDirectChannelToNearestPlayer();
+                this.dispatcher.printStatusToChat(false);
             }
         });
 
