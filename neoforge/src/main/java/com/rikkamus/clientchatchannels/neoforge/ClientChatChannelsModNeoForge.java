@@ -3,53 +3,36 @@ package com.rikkamus.clientchatchannels.neoforge;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.arguments.DoubleArgumentType;
 import com.rikkamus.clientchatchannels.PlayerNameArgument;
-import com.rikkamus.clientchatchannels.config.ClientChatChannelsConfig;
-import com.rikkamus.clientchatchannels.config.ClothConfig;
-import com.rikkamus.clientchatchannels.config.DefaultConfig;
-import me.shedaniel.autoconfig.AutoConfig;
-import me.shedaniel.autoconfig.ConfigHolder;
-import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
-import me.shedaniel.clothconfig2.ClothConfigInitializer;
 import net.minecraft.commands.Commands;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 
 import com.rikkamus.clientchatchannels.ClientChatChannelsMod;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.*;
-import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.common.NeoForge;
 
 @Mod(value = ClientChatChannelsMod.MOD_ID, dist = Dist.CLIENT)
 public class ClientChatChannelsModNeoForge {
 
-    private final ClientChatChannelsMod mod;
+    private final ModContainer container;
+
+    private ClientChatChannelsMod mod;
 
     public ClientChatChannelsModNeoForge(ModContainer container, IEventBus modEventBus) {
-        this.mod = new ClientChatChannelsMod(buildConfig(container));
+        this.container = container;
 
+        modEventBus.addListener(this::onClientSetup);
         modEventBus.addListener(this::onRegisterKeyMappings);
         NeoForge.EVENT_BUS.register(this);
     }
 
-    private ClientChatChannelsConfig buildConfig(ModContainer container) {
-        if (ModList.get().isLoaded(ClothConfigInitializer.MOD_ID)) {
-            ConfigHolder<ClothConfig> holder = AutoConfig.register(ClothConfig.class, JanksonConfigSerializer::new);
-            holder.registerSaveListener((configHolder, clothConfig) -> clothConfig.validate());
-
-            container.registerExtensionPoint(
-                IConfigScreenFactory.class,
-                (modContainer, parent) -> AutoConfig.getConfigScreen(ClothConfig.class, parent).get()
-            );
-
-            return holder.getConfig();
-        } else {
-            return new DefaultConfig();
-        }
+    private void onClientSetup(FMLClientSetupEvent event) {
+        this.mod = new ClientChatChannelsMod(ConfigBuilder.buildConfig(this.container));
     }
 
     private void onRegisterKeyMappings(RegisterKeyMappingsEvent event) {
