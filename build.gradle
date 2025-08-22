@@ -18,8 +18,8 @@ subprojects {
     apply plugin: 'architectury-plugin'
 
     base {
-        // Set up a suffixed format for the mod jar names, e.g. `example-fabric`.
-        archivesName = "$rootProject.archives_name-$project.name"
+        // Set up a suffixed format for the mod jar names.
+        archivesName = "$rootProject.archives_name-$project.name-mc$rootProject.minecraft_version"
     }
 
     repositories {
