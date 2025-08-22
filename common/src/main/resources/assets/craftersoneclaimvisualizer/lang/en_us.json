@@ -1,7 +1,0 @@
-{
-  "key.categories.clientchatchannels.default": "Client Chat Channels",
-
-  "key.clientchatchannels.global": "Switch channel to Global",
-  "key.clientchatchannels.local": "Switch channel to Local",
-  "key.clientchatchannels.direct": "Switch channel to Direct"
-}

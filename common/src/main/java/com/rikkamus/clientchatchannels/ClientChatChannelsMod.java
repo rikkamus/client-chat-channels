@@ -1,19 +1,25 @@
 package com.rikkamus.clientchatchannels;
 
 import com.mojang.blaze3d.platform.InputConstants;
+import com.mojang.logging.LogUtils;
+import com.rikkamus.clientchatchannels.config.ClientChatChannelsConfig;
+import com.rikkamus.clientchatchannels.config.ConfigValueSupplier;
+import lombok.RequiredArgsConstructor;
 import net.minecraft.client.KeyMapping;
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.glfw.GLFW;
+import org.slf4j.Logger;
 
 import java.util.function.Consumer;
 
+@RequiredArgsConstructor
 public class ClientChatChannelsMod {
 
     public static final String MOD_ID = "clientchatchannels";
 
-    private static final String KEY_CATEGORY = "key.categories.clientchatchannels.default";
+    public static final Logger LOGGER = LogUtils.getLogger();
 
-    private static final double DEFAULT_LOCAL_CHANNEL_RADIUS = 15;
+    private static final String KEY_CATEGORY = "key.categories.clientchatchannels.default";
 
     private static KeyMapping GLOBAL_CHANNEL_KEY_MAPPING;
     private static KeyMapping LOCAL_CHANNEL_KEY_MAPPING;
@@ -60,17 +66,20 @@ public class ClientChatChannelsMod {
 
     private final InterceptingMessageDispatcher dispatcher = new InterceptingMessageDispatcher();
 
+    private final ClientChatChannelsConfig config;
+
     public void switchToGlobalChannel() {
         this.dispatcher.setGlobalChannel();
         ChatLogger.log(this.dispatcher.getStatus(false));
     }
 
     public void switchToLocalChannel() {
-        switchToLocalChannel(ClientChatChannelsMod.DEFAULT_LOCAL_CHANNEL_RADIUS);
+        this.dispatcher.setLocalChannel(ConfigValueSupplier.ofConfigValue(this.config::getDefaultLocalChannelRadius));
+        ChatLogger.log(this.dispatcher.getStatus(false));
     }
 
     public void switchToLocalChannel(double radius) {
-        this.dispatcher.setLocalChannel(radius);
+        this.dispatcher.setLocalChannel(ConfigValueSupplier.ofOverriddenValue(radius));
         ChatLogger.log(this.dispatcher.getStatus(false));
     }
 

@@ -1,14 +1,13 @@
 package com.rikkamus.clientchatchannels;
 
-import com.rikkamus.clientchatchannels.channel.ChatChannel;
-import com.rikkamus.clientchatchannels.channel.DirectChatChannel;
-import com.rikkamus.clientchatchannels.channel.GlobalChatChannel;
-import com.rikkamus.clientchatchannels.channel.LocalChatChannel;
+import com.rikkamus.clientchatchannels.channel.*;
+import com.rikkamus.clientchatchannels.config.ConfigValueSupplier;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
+import java.util.function.Supplier;
 
 public class InterceptingMessageDispatcher {
 
@@ -23,8 +22,8 @@ public class InterceptingMessageDispatcher {
         this.channel = new GlobalChatChannel();
     }
 
-    public void setLocalChannel(double radius) {
-        this.channel = new LocalChatChannel(radius);
+    public void setLocalChannel(ConfigValueSupplier<Double> radiusSupplier) {
+        this.channel = new LocalChatChannel(radiusSupplier);
     }
 
     public boolean trySetDirectChannelToNearestPlayer() {

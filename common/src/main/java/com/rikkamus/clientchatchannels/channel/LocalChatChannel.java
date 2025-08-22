@@ -1,9 +1,7 @@
 package com.rikkamus.clientchatchannels.channel;
 
-import com.rikkamus.clientchatchannels.CancelableMessage;
-import com.rikkamus.clientchatchannels.ChatLogger;
-import com.rikkamus.clientchatchannels.LocalPlayerUtil;
-import com.rikkamus.clientchatchannels.MessageColors;
+import com.rikkamus.clientchatchannels.*;
+import com.rikkamus.clientchatchannels.config.ConfigValueSupplier;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,13 +16,13 @@ public class LocalChatChannel implements ChatChannel {
 
     @Getter
     @Setter
-    private double radius;
+    private ConfigValueSupplier<Double> radiusSupplier;
 
     @Override
     public void interceptMessage(CancelableMessage message) {
         message.cancel();
 
-        Set<String> recipients = LocalPlayerUtil.getNamesOfPlayersWithinRadius(this.radius);
+        Set<String> recipients = LocalPlayerUtil.getNamesOfPlayersWithinRadius(this.radiusSupplier.get());
 
         if (recipients.isEmpty()) {
             ChatLogger.log("No nearby players found.", MessageColors.ERROR);
@@ -38,12 +36,13 @@ public class LocalChatChannel implements ChatChannel {
 
     @Override
     public String getDisplayName() {
-        return String.format("Local (%s block radius)", this.radius);
+        if (this.radiusSupplier.isUsingConfigValue()) return "Local (default radius)";
+        else return String.format("Local (%s block radius)", this.radiusSupplier.get());
     }
 
     @Override
     public Optional<Component> getStatus() {
-        Set<String> recipients = LocalPlayerUtil.getNamesOfPlayersWithinRadius(this.radius);
+        Set<String> recipients = LocalPlayerUtil.getNamesOfPlayersWithinRadius(this.radiusSupplier.get());
 
         if (recipients.isEmpty()) return Optional.of(Component.literal("Nobody can see your messages.").withStyle(MessageColors.ERROR));
 
