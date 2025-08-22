@@ -3,10 +3,10 @@ package com.rikkamus.clientchatchannels.channel;
 import com.rikkamus.clientchatchannels.CancelableMessage;
 import com.rikkamus.clientchatchannels.ChatLogger;
 import com.rikkamus.clientchatchannels.LocalPlayerUtil;
+import com.rikkamus.clientchatchannels.MessageColors;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 
@@ -27,7 +27,7 @@ public class LocalChatChannel implements ChatChannel {
         Set<String> recipients = LocalPlayerUtil.getNamesOfPlayersWithinRadius(this.radius);
 
         if (recipients.isEmpty()) {
-            ChatLogger.log("No nearby players found.", ChatFormatting.RED);
+            ChatLogger.log("No nearby players found.", MessageColors.ERROR);
             return;
         }
 
@@ -45,12 +45,12 @@ public class LocalChatChannel implements ChatChannel {
     public Optional<Component> getStatus() {
         Set<String> recipients = LocalPlayerUtil.getNamesOfPlayersWithinRadius(this.radius);
 
-        if (recipients.isEmpty()) return Optional.of(Component.literal("Nobody can see your messages.").withStyle(ChatFormatting.RED));
+        if (recipients.isEmpty()) return Optional.of(Component.literal("Nobody can see your messages.").withStyle(MessageColors.ERROR));
 
         return Optional.of(recipients.stream().map(
-            recipientName -> Component.literal(" - ").withStyle(ChatFormatting.GRAY).append(Component.literal(recipientName).withStyle(ChatFormatting.YELLOW))
+            recipientName -> Component.literal(" - ").withStyle(MessageColors.SUBTLE).append(Component.literal(recipientName).withStyle(MessageColors.SECONDARY))
         ).reduce(
-            Component.literal("Players that can see your messages:").withStyle(ChatFormatting.AQUA),
+            Component.literal("Players that can see your messages:").withStyle(MessageColors.PRIMARY),
             (acc, component) -> acc.append(Component.literal("\n")).append(component)
         ));
     }

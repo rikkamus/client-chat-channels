@@ -4,14 +4,15 @@ import com.rikkamus.clientchatchannels.channel.ChatChannel;
 import com.rikkamus.clientchatchannels.channel.DirectChatChannel;
 import com.rikkamus.clientchatchannels.channel.GlobalChatChannel;
 import com.rikkamus.clientchatchannels.channel.LocalChatChannel;
-import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
 public class InterceptingMessageDispatcher {
 
+    @NotNull
     private ChatChannel channel = new GlobalChatChannel();
 
     public void interceptMessage(CancelableMessage message) {
@@ -22,32 +23,28 @@ public class InterceptingMessageDispatcher {
         this.channel = new GlobalChatChannel();
     }
 
-    public void setLocalChannel() {
-        setLocalChannel(15);
-    }
-
     public void setLocalChannel(double radius) {
         this.channel = new LocalChatChannel(radius);
     }
 
     public boolean trySetDirectChannelToNearestPlayer() {
         Optional<String> optionalRecipient = LocalPlayerUtil.getNameOfNearestPlayer();
-        optionalRecipient.ifPresentOrElse(this::setDirectChannel, () -> ChatLogger.log("No nearby players found.", ChatFormatting.RED));
+        optionalRecipient.ifPresentOrElse(this::setDirectChannel, () -> ChatLogger.log("No nearby players found.", MessageColors.ERROR));
 
         return optionalRecipient.isPresent();
     }
 
-    public void setDirectChannel(String recipientName) {
+    public void setDirectChannel(@NotNull String recipientName) {
         this.channel = new DirectChatChannel(recipientName);
     }
 
-    public void printStatusToChat(boolean includeDetails) {
-        final MutableComponent status = Component.literal("Current channel: ").withStyle(ChatFormatting.AQUA)
-                                                 .append(Component.literal(this.channel.getDisplayName()).withStyle(ChatFormatting.YELLOW));
+    public Component getStatus(boolean includeDetails) {
+        final MutableComponent status = Component.literal("Current channel: ").withStyle(MessageColors.PRIMARY)
+                                                 .append(Component.literal(this.channel.getDisplayName()).withStyle(MessageColors.SECONDARY));
 
         if (includeDetails) this.channel.getStatus().ifPresent(details -> status.append(Component.literal("\n")).append(details));
 
-        ChatLogger.log(status);
+        return status;
     }
 
 }
