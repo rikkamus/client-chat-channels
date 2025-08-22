@@ -1,55 +1,60 @@
 package com.rikkamus.clientchatchannels;
 
-import com.rikkamus.clientchatchannels.channel.ChatChannel;
-import com.rikkamus.clientchatchannels.channel.DirectChatChannel;
-import com.rikkamus.clientchatchannels.channel.GlobalChatChannel;
-import com.rikkamus.clientchatchannels.channel.LocalChatChannel;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
+import com.mojang.blaze3d.platform.InputConstants;
+import lombok.experimental.UtilityClass;
+import net.minecraft.client.KeyMapping;
+import org.lwjgl.glfw.GLFW;
 
-import java.util.Optional;
+import java.util.function.Consumer;
 
+@UtilityClass
 public class ClientChatChannelsMod {
 
     public static final String MOD_ID = "clientchatchannels";
 
-    private ChatChannel channel = new GlobalChatChannel();
+    private static final String KEY_CATEGORY = "key.categories.clientchatchannels.default";
 
-    public void interceptMessage(CancelableMessage message) {
-        this.channel.interceptMessage(message);
+    private static KeyMapping GLOBAL_CHANNEL_KEY_MAPPING;
+    private static KeyMapping LOCAL_CHANNEL_KEY_MAPPING;
+    private static KeyMapping DIRECT_CHANNEL_KEY_MAPPING;
+
+    public static KeyMapping getGlobalChannelKeyMapping() {
+        if (GLOBAL_CHANNEL_KEY_MAPPING == null) GLOBAL_CHANNEL_KEY_MAPPING = new KeyMapping(
+            "key.clientchatchannels.global",
+            InputConstants.Type.KEYSYM,
+            GLFW.GLFW_KEY_U,
+            KEY_CATEGORY
+        );
+
+        return GLOBAL_CHANNEL_KEY_MAPPING;
     }
 
-    public void setGlobalChannel() {
-        this.channel = new GlobalChatChannel();
+    public static KeyMapping getLocalChannelKeyMapping() {
+        if (LOCAL_CHANNEL_KEY_MAPPING == null) LOCAL_CHANNEL_KEY_MAPPING = new KeyMapping(
+            "key.clientchatchannels.local",
+            InputConstants.Type.KEYSYM,
+            GLFW.GLFW_KEY_I,
+            KEY_CATEGORY
+        );
+
+        return LOCAL_CHANNEL_KEY_MAPPING;
     }
 
-    public void setLocalChannel() {
-        setLocalChannel(15);
+    public static KeyMapping getDirectChannelKeyMapping() {
+        if (DIRECT_CHANNEL_KEY_MAPPING == null) DIRECT_CHANNEL_KEY_MAPPING = new KeyMapping(
+            "key.clientchatchannels.direct",
+            InputConstants.Type.KEYSYM,
+            GLFW.GLFW_KEY_O,
+            KEY_CATEGORY
+        );
+
+        return DIRECT_CHANNEL_KEY_MAPPING;
     }
 
-    public void setLocalChannel(double radius) {
-        this.channel = new LocalChatChannel(radius);
-    }
-
-    public boolean trySetDirectChannelToNearestPlayer() {
-        Optional<String> optionalRecipient = LocalPlayerUtil.getNameOfNearestPlayer();
-        optionalRecipient.ifPresentOrElse(this::setDirectChannel, () -> ChatLogger.log("No nearby players found.", ChatFormatting.RED));
-
-        return optionalRecipient.isPresent();
-    }
-
-    public void setDirectChannel(String recipientName) {
-        this.channel = new DirectChatChannel(recipientName);
-    }
-
-    public void printStatusToChat(boolean includeDetails) {
-        final MutableComponent status = Component.literal("Current channel: ").withStyle(ChatFormatting.AQUA)
-                                                 .append(Component.literal(this.channel.getDisplayName()).withStyle(ChatFormatting.YELLOW));
-
-        if (includeDetails) this.channel.getStatus().ifPresent(details -> status.append(Component.literal("\n")).append(details));
-
-        ChatLogger.log(status);
+    public static void registerKeyMappings(Consumer<KeyMapping> registry) {
+        registry.accept(getGlobalChannelKeyMapping());
+        registry.accept(getLocalChannelKeyMapping());
+        registry.accept(getDirectChannelKeyMapping());
     }
 
 }
