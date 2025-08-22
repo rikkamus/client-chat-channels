@@ -9,6 +9,7 @@ version = "${version}"
 displayName = "Client Chat Channels"
 authors = "rikkamus"
 description = "Adds proximity-based chat channels to the game."
+logoFile = "icon.png"
 
 [[dependencies.clientchatchannels]]
 modId = "neoforge"

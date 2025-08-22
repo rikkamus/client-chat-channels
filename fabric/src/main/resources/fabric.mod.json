@@ -12,6 +12,7 @@
     "sources": "https://github.com/rikkamus/client-chat-channels"
   },
   "license": "MIT",
+  "icon": "icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
