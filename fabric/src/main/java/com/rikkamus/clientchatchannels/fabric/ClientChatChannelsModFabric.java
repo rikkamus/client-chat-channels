@@ -2,8 +2,9 @@ package com.rikkamus.clientchatchannels.fabric;
 
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.arguments.DoubleArgumentType;
+import com.mojang.brigadier.arguments.StringArgumentType;
 import com.rikkamus.clientchatchannels.ClientChatChannelsMod;
-import com.rikkamus.clientchatchannels.PlayerNameArgument;
+import com.rikkamus.clientchatchannels.PlayerNameSuggestionProvider;
 import com.rikkamus.clientchatchannels.config.ClientChatChannelsConfig;
 import com.rikkamus.clientchatchannels.config.ClothConfig;
 import com.rikkamus.clientchatchannels.config.DefaultConfig;
@@ -63,7 +64,7 @@ public class ClientChatChannelsModFabric implements ClientModInitializer {
             })));
 
             // Register /channel direct <recipient>
-            dispatcher.register(ClientCommandManager.literal("channel").then(ClientCommandManager.literal("direct").then(ClientCommandManager.argument("recipient", new PlayerNameArgument()).executes(context -> {
+            dispatcher.register(ClientCommandManager.literal("channel").then(ClientCommandManager.literal("direct").then(ClientCommandManager.argument("recipient", StringArgumentType.word()).suggests(new PlayerNameSuggestionProvider<>()).executes(context -> {
                 mod.switchToDirectChannel(context.getArgument("recipient", String.class));
                 return Command.SINGLE_SUCCESS;
             }))));

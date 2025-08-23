@@ -2,7 +2,8 @@ package com.rikkamus.clientchatchannels.neoforge;
 
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.arguments.DoubleArgumentType;
-import com.rikkamus.clientchatchannels.PlayerNameArgument;
+import com.mojang.brigadier.arguments.StringArgumentType;
+import com.rikkamus.clientchatchannels.PlayerNameSuggestionProvider;
 import net.minecraft.commands.Commands;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.EventPriority;
@@ -72,7 +73,7 @@ public class ClientChatChannelsModNeoForge {
         })));
 
         // Register /channel direct <recipient>
-        event.getDispatcher().register(Commands.literal("channel").then(Commands.literal("direct").then(Commands.argument("recipient", new PlayerNameArgument()).executes(context -> {
+        event.getDispatcher().register(Commands.literal("channel").then(Commands.literal("direct").then(Commands.argument("recipient", StringArgumentType.word()).suggests(new PlayerNameSuggestionProvider<>()).executes(context -> {
             this.mod.switchToDirectChannel(context.getArgument("recipient", String.class));
             return Command.SINGLE_SUCCESS;
         }))));
