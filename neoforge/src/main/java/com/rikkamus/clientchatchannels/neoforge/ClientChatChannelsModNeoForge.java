@@ -62,10 +62,7 @@ public class ClientChatChannelsModNeoForge {
         event.getDispatcher().register(Commands.literal("channel").then(Commands.literal("local").executes(context -> {
             this.mod.switchToLocalChannel();
             return Command.SINGLE_SUCCESS;
-        })));
-
-        // Register /channel local <radius>
-        event.getDispatcher().register(Commands.literal("channel").then(Commands.literal("local").then(Commands.argument("radius", DoubleArgumentType.doubleArg(0)).executes(context -> {
+        }).then(Commands.argument("radius", DoubleArgumentType.doubleArg(0)).executes(context -> {
             this.mod.switchToLocalChannel(context.getArgument("radius", Double.class));
             return Command.SINGLE_SUCCESS;
         }))));
@@ -74,14 +71,11 @@ public class ClientChatChannelsModNeoForge {
         event.getDispatcher().register(Commands.literal("channel").then(Commands.literal("direct").executes(context -> {
             this.mod.switchToDirectChannel();
             return Command.SINGLE_SUCCESS;
-        })));
-
-        // Register /channel direct <recipients>
-        event.getDispatcher().register(Commands.literal("channel").then(Commands.literal("direct").then(Commands.argument("recipients", new WordListArgumentType()).suggests(new WordListSuggestionProvider<>(new PlayerNameSuggestionProvider<>())).executes(context -> {
+        }).then(Commands.argument("recipients", new WordListArgumentType()).suggests(new WordListSuggestionProvider<>(new PlayerNameSuggestionProvider<>())).executes(context -> {
             @SuppressWarnings("unchecked")
             TreeSet<String> recipients = new TreeSet<String>(context.getArgument("recipients", List.class));
 
-            mod.switchToDirectChannel(recipients);
+            this.mod.switchToDirectChannel(recipients);
 
             return Command.SINGLE_SUCCESS;
         }))));

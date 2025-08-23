@@ -53,10 +53,7 @@ public class ClientChatChannelsModFabric implements ClientModInitializer {
             dispatcher.register(ClientCommandManager.literal("channel").then(ClientCommandManager.literal("local").executes(context -> {
                 mod.switchToLocalChannel();
                 return Command.SINGLE_SUCCESS;
-            })));
-
-            // Register /channel local <radius>
-            dispatcher.register(ClientCommandManager.literal("channel").then(ClientCommandManager.literal("local").then(ClientCommandManager.argument("radius", DoubleArgumentType.doubleArg(0)).executes(context -> {
+            }).then(ClientCommandManager.argument("radius", DoubleArgumentType.doubleArg(0)).executes(context -> {
                 mod.switchToLocalChannel(context.getArgument("radius", Double.class));
                 return Command.SINGLE_SUCCESS;
             }))));
@@ -65,10 +62,7 @@ public class ClientChatChannelsModFabric implements ClientModInitializer {
             dispatcher.register(ClientCommandManager.literal("channel").then(ClientCommandManager.literal("direct").executes(context -> {
                 mod.switchToDirectChannel();
                 return Command.SINGLE_SUCCESS;
-            })));
-
-            // Register /channel direct <recipients>
-            dispatcher.register(ClientCommandManager.literal("channel").then(ClientCommandManager.literal("direct").then(ClientCommandManager.argument("recipients", new WordListArgumentType()).suggests(new WordListSuggestionProvider<>(new PlayerNameSuggestionProvider<>())).executes(context -> {
+            }).then(ClientCommandManager.argument("recipients", new WordListArgumentType()).suggests(new WordListSuggestionProvider<>(new PlayerNameSuggestionProvider<>())).executes(context -> {
                 @SuppressWarnings("unchecked")
                 TreeSet<String> recipients = new TreeSet<String>(context.getArgument("recipients", List.class));
 
