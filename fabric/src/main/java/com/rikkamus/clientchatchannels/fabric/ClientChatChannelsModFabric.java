@@ -2,9 +2,10 @@ package com.rikkamus.clientchatchannels.fabric;
 
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.arguments.DoubleArgumentType;
-import com.mojang.brigadier.arguments.StringArgumentType;
 import com.rikkamus.clientchatchannels.ClientChatChannelsMod;
-import com.rikkamus.clientchatchannels.PlayerNameSuggestionProvider;
+import com.rikkamus.clientchatchannels.command.PlayerNameSuggestionProvider;
+import com.rikkamus.clientchatchannels.command.WordListArgumentType;
+import com.rikkamus.clientchatchannels.command.WordListSuggestionProvider;
 import com.rikkamus.clientchatchannels.config.ClientChatChannelsConfig;
 import com.rikkamus.clientchatchannels.config.ClothConfig;
 import com.rikkamus.clientchatchannels.config.DefaultConfig;
@@ -21,6 +22,9 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientLoginConnectionEvents;
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.resources.ResourceLocation;
+
+import java.util.List;
+import java.util.TreeSet;
 
 public class ClientChatChannelsModFabric implements ClientModInitializer {
 
@@ -63,9 +67,13 @@ public class ClientChatChannelsModFabric implements ClientModInitializer {
                 return Command.SINGLE_SUCCESS;
             })));
 
-            // Register /channel direct <recipient>
-            dispatcher.register(ClientCommandManager.literal("channel").then(ClientCommandManager.literal("direct").then(ClientCommandManager.argument("recipient", StringArgumentType.word()).suggests(new PlayerNameSuggestionProvider<>()).executes(context -> {
-                mod.switchToDirectChannel(context.getArgument("recipient", String.class));
+            // Register /channel direct <recipients>
+            dispatcher.register(ClientCommandManager.literal("channel").then(ClientCommandManager.literal("direct").then(ClientCommandManager.argument("recipients", new WordListArgumentType()).suggests(new WordListSuggestionProvider<>(new PlayerNameSuggestionProvider<>())).executes(context -> {
+                @SuppressWarnings("unchecked")
+                TreeSet<String> recipients = new TreeSet<String>(context.getArgument("recipients", List.class));
+
+                mod.switchToDirectChannel(recipients);
+
                 return Command.SINGLE_SUCCESS;
             }))));
         });

@@ -46,11 +46,10 @@ public class LocalChatChannel implements ChatChannel {
 
         if (recipients.isEmpty()) return Optional.of(Component.literal("Nobody can see your messages.").withStyle(MessageColors.ERROR));
 
-        return Optional.of(recipients.stream().map(
-            recipientName -> Component.literal(" - ").withStyle(MessageColors.SUBTLE).append(Component.literal(recipientName).withStyle(MessageColors.SECONDARY))
-        ).reduce(
+        return Optional.of(TextListUtil.renderTextList(
             Component.literal("Players that can see your messages:").withStyle(MessageColors.PRIMARY),
-            (acc, component) -> acc.append(Component.literal("\n")).append(component)
+            recipients.stream().map(recipientName -> Component.literal(recipientName).withStyle(MessageColors.SECONDARY)),
+            MessageColors.SUBTLE
         ));
     }
 

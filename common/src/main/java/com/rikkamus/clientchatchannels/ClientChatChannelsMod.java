@@ -6,10 +6,10 @@ import com.rikkamus.clientchatchannels.config.ClientChatChannelsConfig;
 import com.rikkamus.clientchatchannels.config.ConfigValueSupplier;
 import lombok.RequiredArgsConstructor;
 import net.minecraft.client.KeyMapping;
-import org.jetbrains.annotations.NotNull;
 import org.lwjgl.glfw.GLFW;
 import org.slf4j.Logger;
 
+import java.util.SortedSet;
 import java.util.function.Consumer;
 
 @RequiredArgsConstructor
@@ -88,8 +88,8 @@ public class ClientChatChannelsMod {
         ChatLogger.log(this.dispatcher.getStatus(false));
     }
 
-    public void switchToDirectChannel(@NotNull String recipientName) {
-        this.dispatcher.setDirectChannel(recipientName);
+    public void switchToDirectChannel(SortedSet<String> recipients) {
+        this.dispatcher.setDirectChannel(recipients);
         ChatLogger.log(this.dispatcher.getStatus(false));
     }
 

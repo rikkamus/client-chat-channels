@@ -2,8 +2,9 @@ package com.rikkamus.clientchatchannels.neoforge;
 
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.arguments.DoubleArgumentType;
-import com.mojang.brigadier.arguments.StringArgumentType;
-import com.rikkamus.clientchatchannels.PlayerNameSuggestionProvider;
+import com.rikkamus.clientchatchannels.command.PlayerNameSuggestionProvider;
+import com.rikkamus.clientchatchannels.command.WordListArgumentType;
+import com.rikkamus.clientchatchannels.command.WordListSuggestionProvider;
 import net.minecraft.commands.Commands;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.EventPriority;
@@ -16,6 +17,9 @@ import com.rikkamus.clientchatchannels.ClientChatChannelsMod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.common.NeoForge;
+
+import java.util.List;
+import java.util.TreeSet;
 
 @Mod(value = ClientChatChannelsMod.MOD_ID, dist = Dist.CLIENT)
 public class ClientChatChannelsModNeoForge {
@@ -72,9 +76,13 @@ public class ClientChatChannelsModNeoForge {
             return Command.SINGLE_SUCCESS;
         })));
 
-        // Register /channel direct <recipient>
-        event.getDispatcher().register(Commands.literal("channel").then(Commands.literal("direct").then(Commands.argument("recipient", StringArgumentType.word()).suggests(new PlayerNameSuggestionProvider<>()).executes(context -> {
-            this.mod.switchToDirectChannel(context.getArgument("recipient", String.class));
+        // Register /channel direct <recipients>
+        event.getDispatcher().register(Commands.literal("channel").then(Commands.literal("direct").then(Commands.argument("recipients", new WordListArgumentType()).suggests(new WordListSuggestionProvider<>(new PlayerNameSuggestionProvider<>())).executes(context -> {
+            @SuppressWarnings("unchecked")
+            TreeSet<String> recipients = new TreeSet<String>(context.getArgument("recipients", List.class));
+
+            mod.switchToDirectChannel(recipients);
+
             return Command.SINGLE_SUCCESS;
         }))));
     }

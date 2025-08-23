@@ -6,8 +6,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Optional;
-import java.util.function.Supplier;
+import java.util.*;
 
 public class InterceptingMessageDispatcher {
 
@@ -27,14 +26,14 @@ public class InterceptingMessageDispatcher {
     }
 
     public boolean trySetDirectChannelToNearestPlayer() {
-        Optional<String> optionalRecipient = LocalPlayerUtil.getNameOfNearestPlayer();
-        optionalRecipient.ifPresentOrElse(this::setDirectChannel, () -> ChatLogger.log("No nearby players found.", MessageColors.ERROR));
+        Optional<List<String>> optionalRecipients = LocalPlayerUtil.getNameOfNearestPlayer().map(List::of);
+        optionalRecipients.ifPresentOrElse(this::setDirectChannel, () -> ChatLogger.log("No nearby players found.", MessageColors.ERROR));
 
-        return optionalRecipient.isPresent();
+        return optionalRecipients.isPresent();
     }
 
-    public void setDirectChannel(@NotNull String recipientName) {
-        this.channel = new DirectChatChannel(recipientName);
+    public void setDirectChannel(SequencedCollection<String> recipients) {
+        this.channel = new DirectChatChannel(recipients);
     }
 
     public Component getStatus(boolean includeDetails) {

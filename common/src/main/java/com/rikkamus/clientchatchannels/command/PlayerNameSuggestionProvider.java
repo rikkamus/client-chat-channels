@@ -1,4 +1,4 @@
-package com.rikkamus.clientchatchannels;
+package com.rikkamus.clientchatchannels.command;
 
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
