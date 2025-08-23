@@ -3,13 +3,14 @@
   "id": "clientchatchannels",
   "version": "${version}",
   "name": "Client Chat Channels",
-  "description": "Adds proximity-based chat channels to the game.",
+  "description": "Adds client-side chat channels to the game.",
   "authors": [
     "rikkamus"
   ],
   "contact": {
-    "issues": "https://github.com/rikkamus/client-chat-channels/issues",
-    "sources": "https://github.com/rikkamus/client-chat-channels"
+    "homepage": "https://github.com/rikkamus/client-chat-channels",
+    "sources": "https://github.com/rikkamus/client-chat-channels",
+    "issues": "https://github.com/rikkamus/client-chat-channels/issues"
   },
   "license": "MIT",
   "icon": "icon.png",

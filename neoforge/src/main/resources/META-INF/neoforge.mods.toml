@@ -7,8 +7,9 @@ license = "MIT"
 modId = "clientchatchannels"
 version = "${version}"
 displayName = "Client Chat Channels"
+displayURL = "https://github.com/rikkamus/client-chat-channels"
 authors = "rikkamus"
-description = "Adds proximity-based chat channels to the game."
+description = "Adds client-side chat channels to the game."
 logoFile = "icon.png"
 
 [[dependencies.clientchatchannels]]
@@ -16,18 +17,18 @@ modId = "neoforge"
 type = "required"
 versionRange = "[21.0,)"
 ordering = "NONE"
-side = "BOTH"
+side = "CLIENT"
 
 [[dependencies.clientchatchannels]]
 modId = "minecraft"
 type = "required"
 versionRange = "[1.21,1.22)"
 ordering = "NONE"
-side = "BOTH"
+side = "CLIENT"
 
 [[dependencies.clientchatchannels]]
 modId="cloth_config"
 type = "optional"
 versionRange="[15.0.140,)"
 ordering="AFTER"
-side="BOTH"
+side="CLIENT"
