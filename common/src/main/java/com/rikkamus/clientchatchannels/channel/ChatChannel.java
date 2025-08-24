@@ -9,7 +9,7 @@ public interface ChatChannel {
 
     void interceptMessage(CancelableMessage message);
 
-    String getDisplayName();
+    Component getDisplayName();
 
     default Optional<Component> getStatus() {
         return Optional.empty();

@@ -1,6 +1,7 @@
 package com.rikkamus.clientchatchannels.channel;
 
 import com.rikkamus.clientchatchannels.CancelableMessage;
+import net.minecraft.network.chat.Component;
 
 public class GlobalChatChannel implements ChatChannel {
 
@@ -10,8 +11,8 @@ public class GlobalChatChannel implements ChatChannel {
     }
 
     @Override
-    public String getDisplayName() {
-        return "Global";
+    public Component getDisplayName() {
+        return Component.translatable("clientchatchannels.channel.global.display_name");
     }
 
 }

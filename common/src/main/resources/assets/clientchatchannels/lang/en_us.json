@@ -1,4 +1,22 @@
 {
+  "clientchatchannels.dispatcher.message.no_recipients": "No nearby players found.",
+  "clientchatchannels.dispatcher.status.current_channel": "Current channel: %s",
+
+  "clientchatchannels.channel.global.display_name": "Global",
+
+  "clientchatchannels.channel.local.display_name_default_radius": "Local (default radius)",
+  "clientchatchannels.channel.local.display_name_custom_radius": "Local (%s block radius)",
+  "clientchatchannels.channel.local.status_header": "Players that can see your messages:",
+  "clientchatchannels.channel.local.message.intercept.no_recipients": "No nearby players found.",
+  "clientchatchannels.channel.local.message.status.no_recipients": "Nobody can see your messages.",
+
+  "clientchatchannels.channel.direct.display_name_recipient": "Direct (%s)",
+  "clientchatchannels.channel.direct.display_name_recipient_count": "Direct (%s recipients)",
+  "clientchatchannels.channel.direct.status_header": "Players that can see your messages:",
+  "clientchatchannels.channel.direct.message.status.no_recipients": "Nobody can see your messages.",
+
+  "clientchatchannels.argument.word_list.unexpected_symbol": "Unexpected symbol '%s'",
+
   "key.categories.clientchatchannels.default": "Client Chat Channels",
 
   "key.clientchatchannels.global": "Switch channel to Global",
@@ -9,5 +27,7 @@
 
   "text.autoconfig.clientchatchannels.category.default": "General",
 
-  "text.autoconfig.clientchatchannels.option.defaultLocalChannelRadius": "Default Local Channel Range"
+  "text.autoconfig.clientchatchannels.option.defaultLocalChannelRadius": "Default Local Channel Range",
+  "text.autoconfig.clientchatchannels.option.defaultLocalChannelRadius.@Tooltip[0]": "The default radius (in blocks) used for local channel messages when no custom radius is set.",
+  "text.autoconfig.clientchatchannels.option.defaultLocalChannelRadius.@Tooltip[1]": "Specifies the maximum distance from the player within which other players can see the messages."
 }

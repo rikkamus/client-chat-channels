@@ -27,7 +27,7 @@ public class InterceptingMessageDispatcher {
 
     public boolean trySetDirectChannelToNearestPlayer() {
         Optional<List<String>> optionalRecipients = LocalPlayerUtil.getNameOfNearestPlayer().map(List::of);
-        optionalRecipients.ifPresentOrElse(this::setDirectChannel, () -> ChatLogger.log("No nearby players found.", MessageColors.ERROR));
+        optionalRecipients.ifPresentOrElse(this::setDirectChannel, () -> ChatLogger.logTranslatable("clientchatchannels.dispatcher.message.no_recipients", MessageColors.ERROR));
 
         return optionalRecipients.isPresent();
     }
@@ -37,8 +37,10 @@ public class InterceptingMessageDispatcher {
     }
 
     public Component getStatus(boolean includeDetails) {
-        final MutableComponent status = Component.literal("Current channel: ").withStyle(MessageColors.PRIMARY)
-                                                 .append(Component.literal(this.channel.getDisplayName()).withStyle(MessageColors.SECONDARY));
+        final MutableComponent status = Component.translatable(
+            "clientchatchannels.dispatcher.status.current_channel",
+            this.channel.getDisplayName().copy().withStyle(MessageColors.SECONDARY)
+        ).withStyle(MessageColors.PRIMARY);
 
         if (includeDetails) this.channel.getStatus().ifPresent(details -> status.append(Component.literal("\n")).append(details));
 

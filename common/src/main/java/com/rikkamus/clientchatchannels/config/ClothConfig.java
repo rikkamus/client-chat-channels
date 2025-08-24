@@ -11,6 +11,7 @@ import net.minecraft.world.InteractionResult;
 public class ClothConfig implements ClientChatChannelsConfig, ConfigData {
 
     @ConfigEntry.Category("default")
+    @ConfigEntry.Gui.Tooltip(count = 2)
     @Comment("""
         The default radius (in blocks) used for local channel messages when no custom radius is set.
         Specifies the maximum distance from the player within which other players can see the messages.""")

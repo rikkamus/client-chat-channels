@@ -25,7 +25,7 @@ public class LocalChatChannel implements ChatChannel {
         Set<String> recipients = LocalPlayerUtil.getNamesOfPlayersWithinRadius(this.radiusSupplier.get());
 
         if (recipients.isEmpty()) {
-            ChatLogger.log("No nearby players found.", MessageColors.ERROR);
+            ChatLogger.logTranslatable("clientchatchannels.channel.local.message.intercept.no_recipients", MessageColors.ERROR);
             return;
         }
 
@@ -35,19 +35,19 @@ public class LocalChatChannel implements ChatChannel {
     }
 
     @Override
-    public String getDisplayName() {
-        if (this.radiusSupplier.isUsingConfigValue()) return "Local (default radius)";
-        else return String.format("Local (%s block radius)", this.radiusSupplier.get());
+    public Component getDisplayName() {
+        if (this.radiusSupplier.isUsingConfigValue()) return Component.translatable("clientchatchannels.channel.local.display_name_default_radius");
+        else return Component.translatable("clientchatchannels.channel.local.display_name_custom_radius", this.radiusSupplier.get());
     }
 
     @Override
     public Optional<Component> getStatus() {
         Set<String> recipients = LocalPlayerUtil.getNamesOfPlayersWithinRadius(this.radiusSupplier.get());
 
-        if (recipients.isEmpty()) return Optional.of(Component.literal("Nobody can see your messages.").withStyle(MessageColors.ERROR));
+        if (recipients.isEmpty()) return Optional.of(Component.translatable("clientchatchannels.channel.local.message.status.no_recipients").withStyle(MessageColors.ERROR));
 
         return Optional.of(TextListUtil.renderTextList(
-            Component.literal("Players that can see your messages:").withStyle(MessageColors.PRIMARY),
+            Component.translatable("clientchatchannels.channel.local.status_header").withStyle(MessageColors.PRIMARY),
             recipients.stream().map(recipientName -> Component.literal(recipientName).withStyle(MessageColors.SECONDARY)),
             MessageColors.SUBTLE
         ));

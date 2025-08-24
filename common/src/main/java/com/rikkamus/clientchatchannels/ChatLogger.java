@@ -8,8 +8,16 @@ import net.minecraft.network.chat.Component;
 @UtilityClass
 public class ChatLogger {
 
-    public static void log(String message, ChatFormatting formatting) {
+    public static void logLiteral(String message, ChatFormatting formatting) {
         log(Component.literal(message).withStyle(formatting));
+    }
+
+    public static void logTranslatable(String translationKey, ChatFormatting formatting) {
+        log(Component.translatable(translationKey).withStyle(formatting));
+    }
+
+    public static void logTranslatable(String translationKey, ChatFormatting formatting, Object... args) {
+        log(Component.translatable(translationKey, args).withStyle(formatting));
     }
 
     public static void log(Component component) {

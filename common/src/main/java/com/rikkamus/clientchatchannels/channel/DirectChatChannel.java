@@ -28,18 +28,18 @@ public class DirectChatChannel implements ChatChannel {
     }
 
     @Override
-    public String getDisplayName() {
-        if (this.recipients.size() == 1) return String.format("Direct (%s)", this.recipients.getFirst());
-        else return String.format("Direct (%s recipients)", this.recipients.size());
+    public Component getDisplayName() {
+        if (this.recipients.size() == 1) return Component.translatable("clientchatchannels.channel.direct.display_name_recipient", this.recipients.getFirst());
+        else return Component.translatable("clientchatchannels.channel.direct.display_name_recipient_count", this.recipients.size());
     }
 
     @Override
     public Optional<Component> getStatus() {
         if (this.recipients.size() == 1) return Optional.empty();
-        if (this.recipients.isEmpty()) return Optional.of(Component.literal("Nobody can see your messages.").withStyle(MessageColors.ERROR));
+        if (this.recipients.isEmpty()) return Optional.of(Component.translatable("clientchatchannels.channel.direct.message.status.no_recipients").withStyle(MessageColors.ERROR));
 
         return Optional.of(TextListUtil.renderTextList(
-            Component.literal("Players that can see your messages:").withStyle(MessageColors.PRIMARY),
+            Component.translatable("clientchatchannels.channel.direct.status_header").withStyle(MessageColors.PRIMARY),
             this.recipients.stream().map(recipientName -> Component.literal(recipientName).withStyle(MessageColors.SECONDARY)),
             MessageColors.SUBTLE
         ));
