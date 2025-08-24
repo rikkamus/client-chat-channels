@@ -1,0 +1,37 @@
+{
+  "clientchatchannels.dispatcher.message.no_recipients": "nu nearbai playrz wuz findz",
+  "clientchatchannels.dispatcher.status.current_channel": "currnt channul: %s",
+
+  "clientchatchannels.channel.global.display_name": "golbal",
+
+  "clientchatchannels.channel.local.display_name_default_radius": "lolcal (defolt raydius)",
+  "clientchatchannels.channel.local.display_name_custom_radius": "lolcal (%s blokk raydius)",
+  "clientchatchannels.channel.local.status_header": "playrz dat kan c ur messges:",
+  "clientchatchannels.channel.local.message.intercept.no_recipients": "nu nearbai playrz wuz findz",
+  "clientchatchannels.channel.local.message.status.no_recipients": "nobuddy can c ur messges :(",
+
+  "clientchatchannels.channel.direct.display_name_recipient": "direct (%s)",
+  "clientchatchannels.channel.direct.display_name_recipient_count": "direct (%s recipins)",
+  "clientchatchannels.channel.direct.status_header": "playrz dat kan see ur messges:",
+  "clientchatchannels.channel.direct.message.status.no_recipients": "nobuddy can c ur messges :(",
+
+  "clientchatchannels.argument.word_list.unexpected_symbol": "unikspekted symbol '%s'",
+
+  "key.categories.clientchatchannels.default": "Clyunt Cat Channuls",
+
+  "key.clientchatchannels.global": "YELL VERRY LOUDLEE",
+  "key.clientchatchannels.local": "meow all sneakzy liek",
+  "key.clientchatchannels.direct": "Talkz telepathikalee",
+  "key.clientchatchannels.status": "Chek ur surroundingz",
+
+  "modmenu.nameTranslation.clientchatchannels": "Clyunt Cat Channuls",
+  "modmenu.descriptionTranslation.clientchatchannels": "Addz clyunt-side c(h)at channuls 2 da gaem :3",
+
+  "text.autoconfig.clientchatchannels.title": "Clyunt Cat Channuls",
+
+  "text.autoconfig.clientchatchannels.category.default": "General",
+
+  "text.autoconfig.clientchatchannels.option.defaultLocalChannelRadius": "Defolt lolcal channul ranj",
+  "text.autoconfig.clientchatchannels.option.defaultLocalChannelRadius.@Tooltip[0]": "Teh defolt raydius (in blokks) of lolcal channul messges wen u hav no custom raydius.",
+  "text.autoconfig.clientchatchannels.option.defaultLocalChannelRadius.@Tooltip[1]": "Dis da max distanz from te playr wer othr playrz kan c teh messges."
+}
