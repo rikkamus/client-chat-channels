@@ -22,6 +22,7 @@
   "key.clientchatchannels.global": "Switch channel to Global",
   "key.clientchatchannels.local": "Switch channel to Local",
   "key.clientchatchannels.direct": "Switch channel to Direct",
+  "key.clientchatchannels.status": "Show current channel status",
 
   "modmenu.nameTranslation.clientchatchannels": "Client Chat Channels",
   "modmenu.descriptionTranslation.clientchatchannels": "Adds client-side chat channels to the game.",

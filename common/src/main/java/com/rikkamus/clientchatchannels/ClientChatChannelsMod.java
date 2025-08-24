@@ -24,6 +24,7 @@ public class ClientChatChannelsMod {
     private static KeyMapping GLOBAL_CHANNEL_KEY_MAPPING;
     private static KeyMapping LOCAL_CHANNEL_KEY_MAPPING;
     private static KeyMapping DIRECT_CHANNEL_KEY_MAPPING;
+    private static KeyMapping CHANNEL_STATUS_KEY_MAPPING;
 
     public static KeyMapping getGlobalChannelKeyMapping() {
         if (GLOBAL_CHANNEL_KEY_MAPPING == null) GLOBAL_CHANNEL_KEY_MAPPING = new KeyMapping(
@@ -58,10 +59,22 @@ public class ClientChatChannelsMod {
         return DIRECT_CHANNEL_KEY_MAPPING;
     }
 
+    public static KeyMapping getChannelStatusKeyMapping() {
+        if (CHANNEL_STATUS_KEY_MAPPING == null) CHANNEL_STATUS_KEY_MAPPING = new KeyMapping(
+            "key.clientchatchannels.status",
+            InputConstants.Type.KEYSYM,
+            GLFW.GLFW_KEY_UNKNOWN,
+            KEY_CATEGORY
+        );
+
+        return CHANNEL_STATUS_KEY_MAPPING;
+    }
+
     public static void registerKeyMappings(Consumer<KeyMapping> registry) {
         registry.accept(getGlobalChannelKeyMapping());
         registry.accept(getLocalChannelKeyMapping());
         registry.accept(getDirectChannelKeyMapping());
+        registry.accept(getChannelStatusKeyMapping());
     }
 
     private final InterceptingMessageDispatcher dispatcher = new InterceptingMessageDispatcher();
@@ -101,6 +114,7 @@ public class ClientChatChannelsMod {
         if (ClientChatChannelsMod.getGlobalChannelKeyMapping().consumeClick()) switchToGlobalChannel();
         else if (ClientChatChannelsMod.getLocalChannelKeyMapping().consumeClick()) switchToLocalChannel();
         else if (ClientChatChannelsMod.getDirectChannelKeyMapping().consumeClick()) switchToDirectChannel();
+        else if (ClientChatChannelsMod.getChannelStatusKeyMapping().consumeClick()) printStatus();
     }
 
     public void resetChannel() {

@@ -24,11 +24,12 @@ You can use commands to switch between different channels:
 ## Hotkeys
 You can also use hotkeys to quickly switch between channels:
 
-| Channel | Default Hotkey |
-|---------|----------------|
-| Global  | U              |
-| Local   | I              |
-| Direct  | O              |
+| Channel / Action | Default Hotkey |
+|------------------|----------------|
+| Global           | U              |
+| Local            | I              |
+| Direct           | O              |
+| Show status      | *Not bound*    |
 
 ## Configuration
 - The default range of the local channel can be customized using [Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-config).
