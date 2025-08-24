@@ -23,6 +23,9 @@
   "key.clientchatchannels.local": "Switch channel to Local",
   "key.clientchatchannels.direct": "Switch channel to Direct",
 
+  "modmenu.nameTranslation.clientchatchannels": "Client Chat Channels",
+  "modmenu.descriptionTranslation.clientchatchannels": "Adds client-side chat channels to the game.",
+
   "text.autoconfig.clientchatchannels.title": "Client Chat Channels",
 
   "text.autoconfig.clientchatchannels.category.default": "General",
