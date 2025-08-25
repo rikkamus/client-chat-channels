@@ -1,0 +1,10 @@
+name: Suggestion
+description: Make a feature request
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggestion
+    validations:
+      required: true
