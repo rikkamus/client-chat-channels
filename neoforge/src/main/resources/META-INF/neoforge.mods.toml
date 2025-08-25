@@ -16,20 +16,20 @@ updateJSONURL = "https://api.modrinth.com/updates/rzPe21Zl/forge_updates.json?ne
 [[dependencies.clientchatchannels]]
 modId = "neoforge"
 type = "required"
-versionRange = "[21.2,)"
+versionRange = "[21.6,)"
 ordering = "NONE"
 side = "CLIENT"
 
 [[dependencies.clientchatchannels]]
 modId = "minecraft"
 type = "required"
-versionRange = "[1.21.2,1.21.6)"
+versionRange = "[1.21.6, 1.22)"
 ordering = "NONE"
 side = "CLIENT"
 
 [[dependencies.clientchatchannels]]
 modId="cloth_config"
 type = "optional"
-versionRange="[16.0.141,)"
+versionRange="[19.0.146,)"
 ordering="AFTER"
 side="CLIENT"
