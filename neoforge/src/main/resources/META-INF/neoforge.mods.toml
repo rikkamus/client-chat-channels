@@ -11,6 +11,7 @@ displayURL = "https://github.com/rikkamus/client-chat-channels"
 authors = "rikkamus"
 description = "Adds client-side chat channels to the game."
 logoFile = "icon.png"
+updateJSONURL = "https://api.modrinth.com/updates/rzPe21Zl/forge_updates.json?neoforge=only"
 
 [[dependencies.clientchatchannels]]
 modId = "neoforge"
