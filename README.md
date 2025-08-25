@@ -1,4 +1,8 @@
 # Client Chat Channels
+[![CurseForge: Client Chat Channels](https://img.shields.io/badge/CurseForge-Client_Chat_Channels-f16436?logo=curseforge)](https://www.curseforge.com/minecraft/mc-mods/client-chat-channels)
+[![Modrinth: Client Chat Channels](https://img.shields.io/badge/Modrinth-Client_Chat_Channels-00af5c?logo=modrinth)](https://modrinth.com/mod/client-chat-channels)
+[![MIT License](https://img.shields.io/badge/License-MIT-blue)](https://github.com/rikkamus/client-chat-channels/blob/-/LICENSE)
+
 A client-side Minecraft mod that adds chat channels to the game.
 
 ## Channels
