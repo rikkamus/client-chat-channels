@@ -2,9 +2,7 @@ package com.rikkamus.clientchatchannels.neoforge;
 
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.arguments.DoubleArgumentType;
-import com.rikkamus.clientchatchannels.command.PlayerNameSuggestionProvider;
-import com.rikkamus.clientchatchannels.command.WordListArgumentType;
-import com.rikkamus.clientchatchannels.command.WordListSuggestionProvider;
+import com.rikkamus.clientchatchannels.command.PlayerListArgument;
 import net.minecraft.commands.Commands;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.EventPriority;
@@ -71,7 +69,7 @@ public class ClientChatChannelsModNeoForge {
         event.getDispatcher().register(Commands.literal("channel").then(Commands.literal("direct").executes(context -> {
             this.mod.switchToDirectChannel();
             return Command.SINGLE_SUCCESS;
-        }).then(Commands.argument("recipients", new WordListArgumentType()).suggests(new WordListSuggestionProvider<>(new PlayerNameSuggestionProvider<>())).executes(context -> {
+        }).then(Commands.argument("recipients", new PlayerListArgument()).executes(context -> {
             @SuppressWarnings("unchecked")
             TreeSet<String> recipients = new TreeSet<String>(context.getArgument("recipients", List.class));
 

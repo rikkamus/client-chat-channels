@@ -3,9 +3,7 @@ package com.rikkamus.clientchatchannels.fabric;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.arguments.DoubleArgumentType;
 import com.rikkamus.clientchatchannels.ClientChatChannelsMod;
-import com.rikkamus.clientchatchannels.command.PlayerNameSuggestionProvider;
-import com.rikkamus.clientchatchannels.command.WordListArgumentType;
-import com.rikkamus.clientchatchannels.command.WordListSuggestionProvider;
+import com.rikkamus.clientchatchannels.command.PlayerListArgument;
 import com.rikkamus.clientchatchannels.config.ClientChatChannelsConfig;
 import com.rikkamus.clientchatchannels.config.ClothConfig;
 import com.rikkamus.clientchatchannels.config.DefaultConfig;
@@ -62,7 +60,7 @@ public class ClientChatChannelsModFabric implements ClientModInitializer {
             dispatcher.register(ClientCommandManager.literal("channel").then(ClientCommandManager.literal("direct").executes(context -> {
                 mod.switchToDirectChannel();
                 return Command.SINGLE_SUCCESS;
-            }).then(ClientCommandManager.argument("recipients", new WordListArgumentType()).suggests(new WordListSuggestionProvider<>(new PlayerNameSuggestionProvider<>())).executes(context -> {
+            }).then(ClientCommandManager.argument("recipients", new PlayerListArgument()).executes(context -> {
                 @SuppressWarnings("unchecked")
                 TreeSet<String> recipients = new TreeSet<String>(context.getArgument("recipients", List.class));
 
