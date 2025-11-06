@@ -15,6 +15,9 @@ Messages are only sent to players within a specified distance from you.
 ### ✉️ Direct
 Messages are sent exclusively to one or more specific players.
 
+## How It Works
+When using a channel other than global, the mod automatically converts your chat messages into private messages using the <code>/&zwj;msg</code> command and sends them only to the intended recipients.
+
 ## Commands
 You can use commands to switch between different channels:
 
