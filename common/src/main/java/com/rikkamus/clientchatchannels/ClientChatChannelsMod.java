@@ -6,6 +6,7 @@ import com.rikkamus.clientchatchannels.config.ClientChatChannelsConfig;
 import com.rikkamus.clientchatchannels.config.ConfigValueSupplier;
 import lombok.RequiredArgsConstructor;
 import net.minecraft.client.KeyMapping;
+import net.minecraft.resources.ResourceLocation;
 import org.lwjgl.glfw.GLFW;
 import org.slf4j.Logger;
 
@@ -19,19 +20,25 @@ public class ClientChatChannelsMod {
 
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    private static final String KEY_CATEGORY = "key.categories.clientchatchannels.default";
+    private static KeyMapping.Category KEY_CATEGORY;
 
     private static KeyMapping GLOBAL_CHANNEL_KEY_MAPPING;
     private static KeyMapping LOCAL_CHANNEL_KEY_MAPPING;
     private static KeyMapping DIRECT_CHANNEL_KEY_MAPPING;
     private static KeyMapping CHANNEL_STATUS_KEY_MAPPING;
 
+    private static KeyMapping.Category getKeyCategory() {
+        if (KEY_CATEGORY == null) KEY_CATEGORY = KeyMapping.Category.register(ResourceLocation.fromNamespaceAndPath(MOD_ID, "default"));
+
+        return KEY_CATEGORY;
+    }
+
     public static KeyMapping getGlobalChannelKeyMapping() {
         if (GLOBAL_CHANNEL_KEY_MAPPING == null) GLOBAL_CHANNEL_KEY_MAPPING = new KeyMapping(
             "key.clientchatchannels.global",
             InputConstants.Type.KEYSYM,
             GLFW.GLFW_KEY_U,
-            KEY_CATEGORY
+            getKeyCategory()
         );
 
         return GLOBAL_CHANNEL_KEY_MAPPING;
@@ -42,7 +49,7 @@ public class ClientChatChannelsMod {
             "key.clientchatchannels.local",
             InputConstants.Type.KEYSYM,
             GLFW.GLFW_KEY_I,
-            KEY_CATEGORY
+            getKeyCategory()
         );
 
         return LOCAL_CHANNEL_KEY_MAPPING;
@@ -53,7 +60,7 @@ public class ClientChatChannelsMod {
             "key.clientchatchannels.direct",
             InputConstants.Type.KEYSYM,
             GLFW.GLFW_KEY_O,
-            KEY_CATEGORY
+            getKeyCategory()
         );
 
         return DIRECT_CHANNEL_KEY_MAPPING;
@@ -64,7 +71,7 @@ public class ClientChatChannelsMod {
             "key.clientchatchannels.status",
             InputConstants.Type.KEYSYM,
             GLFW.GLFW_KEY_UNKNOWN,
-            KEY_CATEGORY
+            getKeyCategory()
         );
 
         return CHANNEL_STATUS_KEY_MAPPING;
