@@ -5,6 +5,7 @@ import com.rikkamus.clientchatchannels.config.ClothConfig;
 import com.rikkamus.clientchatchannels.config.DefaultConfig;
 import lombok.experimental.UtilityClass;
 import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.AutoConfigClient;
 import me.shedaniel.autoconfig.ConfigHolder;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import me.shedaniel.clothconfig2.ClothConfigInitializer;
@@ -23,7 +24,7 @@ public class ConfigBuilder {
 
             container.registerExtensionPoint(
                 IConfigScreenFactory.class,
-                (modContainer, parent) -> AutoConfig.getConfigScreen(ClothConfig.class, parent).get()
+                (modContainer, parent) -> AutoConfigClient.getConfigScreen(ClothConfig.class, parent).get()
             );
 
             return holder.getConfig();

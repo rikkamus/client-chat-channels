@@ -19,14 +19,14 @@ import net.fabricmc.fabric.api.client.message.v1.ClientSendMessageEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientLoginConnectionEvents;
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 import java.util.List;
 import java.util.TreeSet;
 
 public class ClientChatChannelsModFabric implements ClientModInitializer {
 
-    private static final ResourceLocation INTERCEPT_MESSAGE_EVENT_PHASE = ResourceLocation.fromNamespaceAndPath(ClientChatChannelsMod.MOD_ID, "intercept_message");
+    private static final Identifier INTERCEPT_MESSAGE_EVENT_PHASE = Identifier.fromNamespaceAndPath(ClientChatChannelsMod.MOD_ID, "intercept_message");
 
     @Override
     public void onInitializeClient() {

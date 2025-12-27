@@ -6,7 +6,7 @@ import com.rikkamus.clientchatchannels.config.ClientChatChannelsConfig;
 import com.rikkamus.clientchatchannels.config.ConfigValueSupplier;
 import lombok.RequiredArgsConstructor;
 import net.minecraft.client.KeyMapping;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.lwjgl.glfw.GLFW;
 import org.slf4j.Logger;
 
@@ -28,7 +28,7 @@ public class ClientChatChannelsMod {
     private static KeyMapping CHANNEL_STATUS_KEY_MAPPING;
 
     private static KeyMapping.Category getKeyCategory() {
-        if (KEY_CATEGORY == null) KEY_CATEGORY = KeyMapping.Category.register(ResourceLocation.fromNamespaceAndPath(MOD_ID, "default"));
+        if (KEY_CATEGORY == null) KEY_CATEGORY = KeyMapping.Category.register(Identifier.fromNamespaceAndPath(MOD_ID, "default"));
 
         return KEY_CATEGORY;
     }
