@@ -3,6 +3,7 @@ package com.rikkamus.clientchatchannels.channel;
 import com.rikkamus.clientchatchannels.CancelableMessage;
 import com.rikkamus.clientchatchannels.MessageColors;
 import com.rikkamus.clientchatchannels.TextListUtil;
+import com.rikkamus.clientchatchannels.indicator.ChannelIndicator;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,6 +32,14 @@ public class DirectChatChannel implements ChatChannel {
     public Component getDisplayName() {
         if (this.recipients.size() == 1) return Component.translatable("clientchatchannels.channel.direct.display_name_recipient", this.recipients.getFirst());
         else return Component.translatable("clientchatchannels.channel.direct.display_name_recipient_count", this.recipients.size());
+    }
+
+    @Override
+    public ChannelIndicator getChannelIndicator() {
+        return new ChannelIndicator(
+            Component.translatable("clientchatchannels.channel.direct.indicator_short").withStyle(MessageColors.INDICATOR_DIRECT),
+            Component.translatable("clientchatchannels.channel.direct.indicator_long").withStyle(MessageColors.INDICATOR_DIRECT)
+        );
     }
 
     @Override

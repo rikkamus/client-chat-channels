@@ -36,7 +36,7 @@ You can also use hotkeys to quickly switch between channels:
 | Show status      | *Not bound*    |
 
 ## Configuration
-- The default range of the local channel can be customized using [Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-config).
+- Channel indicators and the default range of the local channel can be customized using [Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-config).
 - Hotkeys can be configured in Minecraft's key binding options.
 
 ## Dependencies

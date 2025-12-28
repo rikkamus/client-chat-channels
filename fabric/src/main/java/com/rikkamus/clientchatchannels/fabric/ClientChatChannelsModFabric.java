@@ -30,55 +30,55 @@ public class ClientChatChannelsModFabric implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        final ClientChatChannelsMod mod = new ClientChatChannelsMod(buildConfig());
+        ClientChatChannelsMod.init(buildConfig());
 
         ClientChatChannelsMod.registerKeyMappings(KeyBindingHelper::registerKeyBinding);
 
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, buildContext) -> {
             // Register /channel status
             dispatcher.register(ClientCommandManager.literal("channel").then(ClientCommandManager.literal("status").executes(context -> {
-                mod.printStatus();
+                ClientChatChannelsMod.getInstance().printStatus();
                 return Command.SINGLE_SUCCESS;
             })));
 
             // Register /channel global
             dispatcher.register(ClientCommandManager.literal("channel").then(ClientCommandManager.literal("global").executes(context -> {
-                mod.switchToGlobalChannel();
+                ClientChatChannelsMod.getInstance().switchToGlobalChannel();
                 return Command.SINGLE_SUCCESS;
             })));
 
             // Register /channel local
             dispatcher.register(ClientCommandManager.literal("channel").then(ClientCommandManager.literal("local").executes(context -> {
-                mod.switchToLocalChannel();
+                ClientChatChannelsMod.getInstance().switchToLocalChannel();
                 return Command.SINGLE_SUCCESS;
             }).then(ClientCommandManager.argument("radius", DoubleArgumentType.doubleArg(0)).executes(context -> {
-                mod.switchToLocalChannel(context.getArgument("radius", Double.class));
+                ClientChatChannelsMod.getInstance().switchToLocalChannel(context.getArgument("radius", Double.class));
                 return Command.SINGLE_SUCCESS;
             }))));
 
             // Register /channel direct
             dispatcher.register(ClientCommandManager.literal("channel").then(ClientCommandManager.literal("direct").executes(context -> {
-                mod.switchToDirectChannel();
+                ClientChatChannelsMod.getInstance().switchToDirectChannel();
                 return Command.SINGLE_SUCCESS;
             }).then(ClientCommandManager.argument("recipients", new PlayerListArgument()).executes(context -> {
                 @SuppressWarnings("unchecked")
                 TreeSet<String> recipients = new TreeSet<String>(context.getArgument("recipients", List.class));
 
-                mod.switchToDirectChannel(recipients);
+                ClientChatChannelsMod.getInstance().switchToDirectChannel(recipients);
 
                 return Command.SINGLE_SUCCESS;
             }))));
         });
 
-        ClientTickEvents.END_CLIENT_TICK.register(minecraft -> mod.handleChannelHotkeys());
+        ClientTickEvents.END_CLIENT_TICK.register(minecraft -> ClientChatChannelsMod.getInstance().handleChannelHotkeys());
 
         // Reset channel when joining new world/server
-        ClientLoginConnectionEvents.INIT.register((clientHandshakePacketListener, minecraft) -> mod.resetChannel());
+        ClientLoginConnectionEvents.INIT.register((clientHandshakePacketListener, minecraft) -> ClientChatChannelsMod.getInstance().resetChannel());
 
         ClientSendMessageEvents.ALLOW_CHAT.addPhaseOrdering(Event.DEFAULT_PHASE, ClientChatChannelsModFabric.INTERCEPT_MESSAGE_EVENT_PHASE);
         ClientSendMessageEvents.ALLOW_CHAT.register(ClientChatChannelsModFabric.INTERCEPT_MESSAGE_EVENT_PHASE, message -> {
             SimpleCancelableMessage cancelableMessage = new SimpleCancelableMessage(message);
-            mod.interceptMessage(cancelableMessage);
+            ClientChatChannelsMod.getInstance().interceptMessage(cancelableMessage);
 
             return !cancelableMessage.isCanceled();
         });

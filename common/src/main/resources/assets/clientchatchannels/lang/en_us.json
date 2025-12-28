@@ -3,15 +3,21 @@
   "clientchatchannels.dispatcher.status.current_channel": "Current channel: %s",
 
   "clientchatchannels.channel.global.display_name": "Global",
+  "clientchatchannels.channel.global.indicator_short": "[G]",
+  "clientchatchannels.channel.global.indicator_long": "[GLOBAL]",
 
   "clientchatchannels.channel.local.display_name_default_radius": "Local (default radius)",
   "clientchatchannels.channel.local.display_name_custom_radius": "Local (%s block radius)",
+  "clientchatchannels.channel.local.indicator_short": "[L]",
+  "clientchatchannels.channel.local.indicator_long": "[LOCAL]",
   "clientchatchannels.channel.local.status_header": "Players that can see your messages:",
   "clientchatchannels.channel.local.message.intercept.no_recipients": "No nearby players found.",
   "clientchatchannels.channel.local.message.status.no_recipients": "Nobody can see your messages.",
 
   "clientchatchannels.channel.direct.display_name_recipient": "Direct (%s)",
   "clientchatchannels.channel.direct.display_name_recipient_count": "Direct (%s recipients)",
+  "clientchatchannels.channel.direct.indicator_short": "[D]",
+  "clientchatchannels.channel.direct.indicator_long": "[DIRECT]",
   "clientchatchannels.channel.direct.status_header": "Players that can see your messages:",
   "clientchatchannels.channel.direct.message.status.no_recipients": "Nobody can see your messages.",
 
@@ -33,5 +39,8 @@
 
   "text.autoconfig.clientchatchannels.option.defaultLocalChannelRadius": "Default Local Channel Range",
   "text.autoconfig.clientchatchannels.option.defaultLocalChannelRadius.@Tooltip[0]": "The default radius (in blocks) used for local channel messages when no custom radius is set.",
-  "text.autoconfig.clientchatchannels.option.defaultLocalChannelRadius.@Tooltip[1]": "Specifies the maximum distance from the player within which other players can see the messages."
+  "text.autoconfig.clientchatchannels.option.defaultLocalChannelRadius.@Tooltip[1]": "Specifies the maximum distance from the player within which other players can see the messages.",
+
+  "text.autoconfig.clientchatchannels.option.channelIndicatorType": "Channel Indicator Type",
+  "text.autoconfig.clientchatchannels.option.channelIndicatorType.@Tooltip": "The type of channel indicator to show when typing a message in chat."
 }

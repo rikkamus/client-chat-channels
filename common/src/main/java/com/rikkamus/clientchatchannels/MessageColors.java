@@ -11,4 +11,8 @@ public class MessageColors {
     public static final ChatFormatting SUBTLE = ChatFormatting.GRAY;
     public static final ChatFormatting ERROR = ChatFormatting.RED;
 
+    public static final ChatFormatting INDICATOR_GLOBAL = ChatFormatting.AQUA;
+    public static final ChatFormatting INDICATOR_LOCAL = ChatFormatting.GREEN;
+    public static final ChatFormatting INDICATOR_DIRECT = ChatFormatting.YELLOW;
+
 }

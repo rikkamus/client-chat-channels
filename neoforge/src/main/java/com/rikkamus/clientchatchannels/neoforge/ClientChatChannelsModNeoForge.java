@@ -24,8 +24,6 @@ public class ClientChatChannelsModNeoForge {
 
     private final ModContainer container;
 
-    private ClientChatChannelsMod mod;
-
     public ClientChatChannelsModNeoForge(ModContainer container, IEventBus modEventBus) {
         this.container = container;
 
@@ -35,7 +33,7 @@ public class ClientChatChannelsModNeoForge {
     }
 
     private void onClientSetup(FMLClientSetupEvent event) {
-        this.mod = new ClientChatChannelsMod(ConfigBuilder.buildConfig(this.container));
+        ClientChatChannelsMod.init(ConfigBuilder.buildConfig(this.container));
     }
 
     private void onRegisterKeyMappings(RegisterKeyMappingsEvent event) {
@@ -46,34 +44,34 @@ public class ClientChatChannelsModNeoForge {
     private void onRegisterClientCommands(RegisterClientCommandsEvent event) {
         // Register /channel status
         event.getDispatcher().register(Commands.literal("channel").then(Commands.literal("status").executes(context -> {
-            this.mod.printStatus();
+            ClientChatChannelsMod.getInstance().printStatus();
             return Command.SINGLE_SUCCESS;
         })));
 
         // Register /channel global
         event.getDispatcher().register(Commands.literal("channel").then(Commands.literal("global").executes(context -> {
-            this.mod.switchToGlobalChannel();
+            ClientChatChannelsMod.getInstance().switchToGlobalChannel();
             return Command.SINGLE_SUCCESS;
         })));
 
         // Register /channel local
         event.getDispatcher().register(Commands.literal("channel").then(Commands.literal("local").executes(context -> {
-            this.mod.switchToLocalChannel();
+            ClientChatChannelsMod.getInstance().switchToLocalChannel();
             return Command.SINGLE_SUCCESS;
         }).then(Commands.argument("radius", DoubleArgumentType.doubleArg(0)).executes(context -> {
-            this.mod.switchToLocalChannel(context.getArgument("radius", Double.class));
+            ClientChatChannelsMod.getInstance().switchToLocalChannel(context.getArgument("radius", Double.class));
             return Command.SINGLE_SUCCESS;
         }))));
 
         // Register /channel direct
         event.getDispatcher().register(Commands.literal("channel").then(Commands.literal("direct").executes(context -> {
-            this.mod.switchToDirectChannel();
+            ClientChatChannelsMod.getInstance().switchToDirectChannel();
             return Command.SINGLE_SUCCESS;
         }).then(Commands.argument("recipients", new PlayerListArgument()).executes(context -> {
             @SuppressWarnings("unchecked")
             TreeSet<String> recipients = new TreeSet<String>(context.getArgument("recipients", List.class));
 
-            this.mod.switchToDirectChannel(recipients);
+            ClientChatChannelsMod.getInstance().switchToDirectChannel(recipients);
 
             return Command.SINGLE_SUCCESS;
         }))));
@@ -81,18 +79,18 @@ public class ClientChatChannelsModNeoForge {
 
     @SubscribeEvent
     private void onClientTick(ClientTickEvent.Post event) {
-        this.mod.handleChannelHotkeys();
+        ClientChatChannelsMod.getInstance().handleChannelHotkeys();
     }
 
     @SubscribeEvent
     private void onClientLoggedIn(ClientPlayerNetworkEvent.LoggingIn event) {
         // Reset channel when joining new world/server
-        this.mod.resetChannel();
+        ClientChatChannelsMod.getInstance().resetChannel();
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     private void onOutgoingChatMessage(ClientChatEvent event) {
-        this.mod.interceptMessage(new ClientChatEventMessage(event));
+        ClientChatChannelsMod.getInstance().interceptMessage(new ClientChatEventMessage(event));
     }
 
 }
