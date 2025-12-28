@@ -3,15 +3,21 @@
   "clientchatchannels.dispatcher.status.current_channel": "currnt channul: %s",
 
   "clientchatchannels.channel.global.display_name": "golbal",
+  "clientchatchannels.channel.global.indicator_short": "[G]",
+  "clientchatchannels.channel.global.indicator_long": "[golbal]",
 
   "clientchatchannels.channel.local.display_name_default_radius": "lolcal (defolt raydius)",
   "clientchatchannels.channel.local.display_name_custom_radius": "lolcal (%s blokk raydius)",
+  "clientchatchannels.channel.local.indicator_short": "[L]",
+  "clientchatchannels.channel.local.indicator_long": "[lolcal]",
   "clientchatchannels.channel.local.status_header": "playrz dat kan c ur messges:",
   "clientchatchannels.channel.local.message.intercept.no_recipients": "nu nearbai playrz wuz findz",
   "clientchatchannels.channel.local.message.status.no_recipients": "nobuddy can c ur messges :(",
 
   "clientchatchannels.channel.direct.display_name_recipient": "direct (%s)",
   "clientchatchannels.channel.direct.display_name_recipient_count": "direct (%s recipins)",
+  "clientchatchannels.channel.direct.indicator_short": "[D]",
+  "clientchatchannels.channel.direct.indicator_long": "[direct]",
   "clientchatchannels.channel.direct.status_header": "playrz dat kan see ur messges:",
   "clientchatchannels.channel.direct.message.status.no_recipients": "nobuddy can c ur messges :(",
 
@@ -33,5 +39,8 @@
 
   "text.autoconfig.clientchatchannels.option.defaultLocalChannelRadius": "Defolt lolcal channul ranj",
   "text.autoconfig.clientchatchannels.option.defaultLocalChannelRadius.@Tooltip[0]": "Teh defolt raydius (in blokks) of lolcal channul messges wen u hav no custom raydius.",
-  "text.autoconfig.clientchatchannels.option.defaultLocalChannelRadius.@Tooltip[1]": "Dis da max distanz from te playr wer othr playrz kan c teh messges."
+  "text.autoconfig.clientchatchannels.option.defaultLocalChannelRadius.@Tooltip[1]": "Dis da max distanz from te playr wer othr playrz kan c teh messges.",
+
+  "text.autoconfig.clientchatchannels.option.channelIndicatorType": "Channul Indicator Type",
+  "text.autoconfig.clientchatchannels.option.channelIndicatorType.@Tooltip": "Da type of channul indicator to show wen typing messges in cat."
 }

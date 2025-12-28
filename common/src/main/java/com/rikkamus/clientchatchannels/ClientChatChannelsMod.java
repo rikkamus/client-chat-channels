@@ -4,6 +4,9 @@ import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.logging.LogUtils;
 import com.rikkamus.clientchatchannels.config.ClientChatChannelsConfig;
 import com.rikkamus.clientchatchannels.config.ConfigValueSupplier;
+import com.rikkamus.clientchatchannels.indicator.ChannelIndicator;
+import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.resources.ResourceLocation;
@@ -13,7 +16,7 @@ import org.slf4j.Logger;
 import java.util.SortedSet;
 import java.util.function.Consumer;
 
-@RequiredArgsConstructor
+@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class ClientChatChannelsMod {
 
     public static final String MOD_ID = "clientchatchannels";
@@ -26,6 +29,8 @@ public class ClientChatChannelsMod {
     private static KeyMapping LOCAL_CHANNEL_KEY_MAPPING;
     private static KeyMapping DIRECT_CHANNEL_KEY_MAPPING;
     private static KeyMapping CHANNEL_STATUS_KEY_MAPPING;
+
+    private static ClientChatChannelsMod INSTANCE;
 
     private static KeyMapping.Category getKeyCategory() {
         if (KEY_CATEGORY == null) KEY_CATEGORY = KeyMapping.Category.register(ResourceLocation.fromNamespaceAndPath(MOD_ID, "default"));
@@ -84,8 +89,18 @@ public class ClientChatChannelsMod {
         registry.accept(getChannelStatusKeyMapping());
     }
 
+    public static void init(ClientChatChannelsConfig config) {
+        if (INSTANCE != null) throw new IllegalStateException("Client chat channels mod has already been initialized.");
+        INSTANCE = new ClientChatChannelsMod(config);
+    }
+
+    public static ClientChatChannelsMod getInstance() {
+        return INSTANCE;
+    }
+
     private final InterceptingMessageDispatcher dispatcher = new InterceptingMessageDispatcher();
 
+    @Getter
     private final ClientChatChannelsConfig config;
 
     public void switchToGlobalChannel() {
@@ -130,6 +145,10 @@ public class ClientChatChannelsMod {
 
     public void interceptMessage(CancelableMessage message) {
         this.dispatcher.interceptMessage(message);
+    }
+
+    public ChannelIndicator getChannelIndicator() {
+        return this.dispatcher.getChannelIndicator();
     }
 
 }
