@@ -2,6 +2,7 @@ package com.rikkamus.clientchatchannels;
 
 import com.rikkamus.clientchatchannels.channel.*;
 import com.rikkamus.clientchatchannels.config.ConfigValueSupplier;
+import com.rikkamus.clientchatchannels.indicator.ChannelIndicator;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import org.jetbrains.annotations.NotNull;
@@ -34,6 +35,10 @@ public class InterceptingMessageDispatcher {
 
     public void setDirectChannel(SequencedCollection<String> recipients) {
         this.channel = new DirectChatChannel(recipients);
+    }
+
+    public ChannelIndicator getChannelIndicator() {
+        return this.channel.getChannelIndicator();
     }
 
     public Component getStatus(boolean includeDetails) {

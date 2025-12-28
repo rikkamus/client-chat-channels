@@ -2,6 +2,7 @@ package com.rikkamus.clientchatchannels.channel;
 
 import com.rikkamus.clientchatchannels.*;
 import com.rikkamus.clientchatchannels.config.ConfigValueSupplier;
+import com.rikkamus.clientchatchannels.indicator.ChannelIndicator;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,6 +39,14 @@ public class LocalChatChannel implements ChatChannel {
     public Component getDisplayName() {
         if (this.radiusSupplier.isUsingConfigValue()) return Component.translatable("clientchatchannels.channel.local.display_name_default_radius");
         else return Component.translatable("clientchatchannels.channel.local.display_name_custom_radius", this.radiusSupplier.get());
+    }
+
+    @Override
+    public ChannelIndicator getChannelIndicator() {
+        return new ChannelIndicator(
+            Component.translatable("clientchatchannels.channel.local.indicator_short").withStyle(MessageColors.INDICATOR_LOCAL),
+            Component.translatable("clientchatchannels.channel.local.indicator_long").withStyle(MessageColors.INDICATOR_LOCAL)
+        );
     }
 
     @Override

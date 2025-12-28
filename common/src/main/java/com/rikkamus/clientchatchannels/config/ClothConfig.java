@@ -1,6 +1,7 @@
 package com.rikkamus.clientchatchannels.config;
 
 import com.rikkamus.clientchatchannels.ClientChatChannelsMod;
+import com.rikkamus.clientchatchannels.indicator.ChannelIndicatorType;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
@@ -17,6 +18,12 @@ public class ClothConfig implements ClientChatChannelsConfig, ConfigData {
         Specifies the maximum distance from the player within which other players can see the messages.""")
     private double defaultLocalChannelRadius = DefaultConfig.DEFAULT_LOCAL_CHANNEL_RADIUS;
 
+    @ConfigEntry.Category("default")
+    @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
+    @ConfigEntry.Gui.Tooltip
+    @Comment("The type of channel indicator to show when typing a message in chat.")
+    private ChannelIndicatorType channelIndicatorType = DefaultConfig.DEFAULT_CHANNEL_INDICATOR_TYPE;
+
     @Override
     public void validatePostLoad() {
         validate();
@@ -28,12 +35,22 @@ public class ClothConfig implements ClientChatChannelsConfig, ConfigData {
             this.defaultLocalChannelRadius = DefaultConfig.DEFAULT_LOCAL_CHANNEL_RADIUS;
         }
 
+        if (this.channelIndicatorType == null) {
+            ClientChatChannelsMod.LOGGER.warn("Channel indicator type is null, correcting...");
+            this.channelIndicatorType = DefaultConfig.DEFAULT_CHANNEL_INDICATOR_TYPE;
+        }
+
         return InteractionResult.SUCCESS;
     }
 
     @Override
     public double getDefaultLocalChannelRadius() {
         return this.defaultLocalChannelRadius;
+    }
+
+    @Override
+    public ChannelIndicatorType getChannelIndicatorType() {
+        return this.channelIndicatorType;
     }
 
 }
