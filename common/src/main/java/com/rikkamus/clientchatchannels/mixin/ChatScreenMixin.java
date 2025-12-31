@@ -24,7 +24,7 @@ public class ChatScreenMixin extends Screen {
     @Shadow
     private EditBox input;
 
-    public ChatScreenMixin() {
+    private ChatScreenMixin() {
         super(null);
     }
 
@@ -36,20 +36,17 @@ public class ChatScreenMixin extends Screen {
         final ChannelIndicator indicator = ClientChatChannelsMod.getInstance().getChannelIndicator();
         final Component indicatorComponent = type.selectIndicatorComponent(indicator);
 
-        updateEditBoxBounds(this.minecraft.fontFilterFishy, indicatorComponent);
-        renderChannelIndicator(guiGraphics, this.minecraft.fontFilterFishy, indicatorComponent);
-    }
+        final Font font = this.minecraft.fontFilterFishy;
 
-    private void updateEditBoxBounds(Font font, Component indicator) {
-        final int indicatorWidth = font.width(indicator);
+        // Update edit box bounds
+        final int indicatorWidth = font.width(indicatorComponent);
         final int editBoxXOffset = X_OFFSET + indicatorWidth + RIGHT_PADDING;
 
         this.input.setPosition(editBoxXOffset, this.height - Y_OFFSET);
         this.input.setSize(this.width - editBoxXOffset, this.input.getHeight());
-    }
 
-    private void renderChannelIndicator(GuiGraphics guiGraphics, Font font, Component indicator) {
-        guiGraphics.drawString(font, indicator, X_OFFSET, this.height - Y_OFFSET, 0xFFFFFFFF);
+        // Render channel indicator
+        guiGraphics.drawString(font, indicatorComponent, X_OFFSET, this.height - Y_OFFSET, 0xFFFFFFFF);
     }
 
 }
