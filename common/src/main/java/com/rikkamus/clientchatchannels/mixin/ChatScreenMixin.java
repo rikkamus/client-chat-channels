@@ -17,10 +17,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ChatScreen.class)
 public class ChatScreenMixin extends Screen {
 
-    private static final int X_OFFSET = 4;
-    private static final int RIGHT_PADDING = 4;
-    private static final int Y_OFFSET = 12;
-
     @Shadow
     private EditBox input;
 
@@ -30,6 +26,10 @@ public class ChatScreenMixin extends Screen {
 
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screens/Screen;render(Lnet/minecraft/client/gui/GuiGraphics;IIF)V"))
     private void onRender(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick, CallbackInfo ci) {
+        final int xOffset = 4;
+        final int rightPadding = 4;
+        final int yOffset = 12;
+
         final ChannelIndicatorType type = ClientChatChannelsMod.getInstance().getConfig().getChannelIndicatorType();
         if (!type.isEnabled()) return;
 
@@ -39,14 +39,13 @@ public class ChatScreenMixin extends Screen {
         final Font font = this.minecraft.fontFilterFishy;
 
         // Update edit box bounds
-        final int indicatorWidth = font.width(indicatorComponent);
-        final int editBoxXOffset = X_OFFSET + indicatorWidth + RIGHT_PADDING;
+        final int editBoxXOffset = xOffset + font.width(indicatorComponent) + rightPadding;
 
-        this.input.setPosition(editBoxXOffset, this.height - Y_OFFSET);
+        this.input.setPosition(editBoxXOffset, this.height - yOffset);
         this.input.setSize(this.width - editBoxXOffset, this.input.getHeight());
 
         // Render channel indicator
-        guiGraphics.drawString(font, indicatorComponent, X_OFFSET, this.height - Y_OFFSET, 0xFFFFFFFF);
+        guiGraphics.drawString(font, indicatorComponent, xOffset, this.height - yOffset, 0xFFFFFFFF);
     }
 
 }
