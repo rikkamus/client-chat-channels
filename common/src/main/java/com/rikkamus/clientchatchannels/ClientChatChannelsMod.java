@@ -4,7 +4,6 @@ import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.logging.LogUtils;
 import com.rikkamus.clientchatchannels.config.ClientChatChannelsConfig;
 import com.rikkamus.clientchatchannels.config.ConfigValueSupplier;
-import com.rikkamus.clientchatchannels.indicator.ChannelIndicator;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -98,6 +97,7 @@ public class ClientChatChannelsMod {
         return INSTANCE;
     }
 
+    @Getter
     private final InterceptingMessageDispatcher dispatcher = new InterceptingMessageDispatcher();
 
     @Getter
@@ -145,10 +145,6 @@ public class ClientChatChannelsMod {
 
     public void interceptMessage(CancelableMessage message) {
         this.dispatcher.interceptMessage(message);
-    }
-
-    public ChannelIndicator getChannelIndicator() {
-        return this.dispatcher.getChannelIndicator();
     }
 
 }
