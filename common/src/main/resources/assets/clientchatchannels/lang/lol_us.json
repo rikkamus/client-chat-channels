@@ -48,5 +48,8 @@
   "text.autoconfig.clientchatchannels.option.channelIndicatorType.@Tooltip": "Da type of channul indicator to show\nwen typing messges in cat.",
 
   "text.autoconfig.clientchatchannels.option.channelIndicatorTooltipType": "Channul indicator tooltip type",
-  "text.autoconfig.clientchatchannels.option.channelIndicatorTooltipType.@Tooltip": "Da type of tooltip dat appearz wen\nur mouse is over da channul indicator."
+  "text.autoconfig.clientchatchannels.option.channelIndicatorTooltipType.@Tooltip": "Da type of tooltip dat appearz wen\nur mouse is over da channul indicator.",
+
+  "text.autoconfig.clientchatchannels.option.channelSwitchLoggingEnabled": "Show channul switch messges",
+  "text.autoconfig.clientchatchannels.option.channelSwitchLoggingEnabled.@Tooltip": "Enables messges dat show teh currnt\nchannul wen u switch channuls."
 }
