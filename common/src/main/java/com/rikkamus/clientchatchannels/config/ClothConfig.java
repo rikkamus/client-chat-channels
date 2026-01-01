@@ -13,22 +13,31 @@ import net.minecraft.world.InteractionResult;
 public class ClothConfig implements ClientChatChannelsConfig, ConfigData {
 
     @ConfigEntry.Category("default")
-    @ConfigEntry.Gui.Tooltip(count = 2)
+    @ConfigEntry.Gui.Tooltip
     @Comment("""
-        The default radius (in blocks) used for local channel messages when no custom radius is set.
-        Specifies the maximum distance from the player within which other players can see the messages.""")
+        The default radius used for local channel messages when no custom radius is set.
+        Specifies the maximum distance (in blocks) from the player within which other players can see the messages.""")
     private double defaultLocalChannelRadius = DefaultConfig.DEFAULT_LOCAL_CHANNEL_RADIUS;
 
     @ConfigEntry.Category("default")
     @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
     @ConfigEntry.Gui.Tooltip
-    @Comment("The type of channel indicator to show when typing a message in chat.")
+    @Comment("""
+        The type of channel indicator to show when typing a message in chat.
+        NONE - No indicator
+        SHORT - Single-letter indicator
+        LONG - Full channel name""")
     private ChannelIndicatorType channelIndicatorType = DefaultConfig.DEFAULT_CHANNEL_INDICATOR_TYPE;
 
     @ConfigEntry.Category("default")
     @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
     @ConfigEntry.Gui.Tooltip
-    @Comment("The type of tooltip that appears when hovering over the channel indicator.")
+    @Comment("""
+        The type of tooltip that appears when hovering over the channel indicator.
+        NONE - No tooltip
+        MINIMAL - Channel name only
+        SIMPLE - Basic channel details
+        DETAILED - Full channel details""")
     private ChannelIndicatorTooltipType channelIndicatorTooltipType = DefaultConfig.DEFAULT_CHANNEL_INDICATOR_TOOLTIP_TYPE;
 
     @Override
