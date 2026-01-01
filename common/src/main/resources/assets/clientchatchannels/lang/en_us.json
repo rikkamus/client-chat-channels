@@ -6,6 +6,7 @@
   "clientchatchannels.channel.global.indicator_short": "[G]",
   "clientchatchannels.channel.global.indicator_long": "[GLOBAL]",
 
+  "clientchatchannels.channel.local.display_name": "Local",
   "clientchatchannels.channel.local.display_name_default_radius": "Local (default radius)",
   "clientchatchannels.channel.local.display_name_custom_radius": "Local (%s block radius)",
   "clientchatchannels.channel.local.indicator_short": "[L]",
@@ -13,13 +14,16 @@
   "clientchatchannels.channel.local.status_header": "Players that can see your messages:",
   "clientchatchannels.channel.local.message.intercept.no_recipients": "No nearby players found.",
   "clientchatchannels.channel.local.message.status.no_recipients": "Nobody can see your messages.",
+  "clientchatchannels.channel.local.message.tooltip.no_recipients": "No nearby players",
 
+  "clientchatchannels.channel.direct.display_name": "Direct",
   "clientchatchannels.channel.direct.display_name_recipient": "Direct (%s)",
   "clientchatchannels.channel.direct.display_name_recipient_count": "Direct (%s recipients)",
   "clientchatchannels.channel.direct.indicator_short": "[D]",
   "clientchatchannels.channel.direct.indicator_long": "[DIRECT]",
   "clientchatchannels.channel.direct.status_header": "Players that can see your messages:",
   "clientchatchannels.channel.direct.message.status.no_recipients": "Nobody can see your messages.",
+  "clientchatchannels.channel.direct.message.tooltip.no_recipients": "No recipients",
 
   "clientchatchannels.argument.word_list.unexpected_symbol": "Unexpected symbol '%s'",
 
@@ -42,5 +46,8 @@
   "text.autoconfig.clientchatchannels.option.defaultLocalChannelRadius.@Tooltip[1]": "Specifies the maximum distance from the player within which other players can see the messages.",
 
   "text.autoconfig.clientchatchannels.option.channelIndicatorType": "Channel Indicator Type",
-  "text.autoconfig.clientchatchannels.option.channelIndicatorType.@Tooltip": "The type of channel indicator to show when typing a message in chat."
+  "text.autoconfig.clientchatchannels.option.channelIndicatorType.@Tooltip": "The type of channel indicator to show when typing a message in chat.",
+
+  "text.autoconfig.clientchatchannels.option.channelIndicatorTooltipType": "Channel Indicator Tooltip Type",
+  "text.autoconfig.clientchatchannels.option.channelIndicatorTooltipType.@Tooltip": "The type of tooltip that appears when hovering over the channel indicator."
 }

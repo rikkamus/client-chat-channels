@@ -1,6 +1,7 @@
 package com.rikkamus.clientchatchannels.config;
 
 import com.rikkamus.clientchatchannels.ClientChatChannelsMod;
+import com.rikkamus.clientchatchannels.indicator.ChannelIndicatorTooltipType;
 import com.rikkamus.clientchatchannels.indicator.ChannelIndicatorType;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
@@ -24,6 +25,12 @@ public class ClothConfig implements ClientChatChannelsConfig, ConfigData {
     @Comment("The type of channel indicator to show when typing a message in chat.")
     private ChannelIndicatorType channelIndicatorType = DefaultConfig.DEFAULT_CHANNEL_INDICATOR_TYPE;
 
+    @ConfigEntry.Category("default")
+    @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
+    @ConfigEntry.Gui.Tooltip
+    @Comment("The type of tooltip that appears when hovering over the channel indicator.")
+    private ChannelIndicatorTooltipType channelIndicatorTooltipType = DefaultConfig.DEFAULT_CHANNEL_INDICATOR_TOOLTIP_TYPE;
+
     @Override
     public void validatePostLoad() {
         validate();
@@ -40,6 +47,11 @@ public class ClothConfig implements ClientChatChannelsConfig, ConfigData {
             this.channelIndicatorType = DefaultConfig.DEFAULT_CHANNEL_INDICATOR_TYPE;
         }
 
+        if (this.channelIndicatorTooltipType == null) {
+            ClientChatChannelsMod.LOGGER.warn("Channel indicator tooltip type is null, correcting...");
+            this.channelIndicatorTooltipType = DefaultConfig.DEFAULT_CHANNEL_INDICATOR_TOOLTIP_TYPE;
+        }
+
         return InteractionResult.SUCCESS;
     }
 
@@ -51,6 +63,11 @@ public class ClothConfig implements ClientChatChannelsConfig, ConfigData {
     @Override
     public ChannelIndicatorType getChannelIndicatorType() {
         return this.channelIndicatorType;
+    }
+
+    @Override
+    public ChannelIndicatorTooltipType getChannelIndicatorTooltipType() {
+        return this.channelIndicatorTooltipType;
     }
 
 }
