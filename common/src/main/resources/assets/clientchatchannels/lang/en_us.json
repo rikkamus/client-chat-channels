@@ -42,12 +42,11 @@
   "text.autoconfig.clientchatchannels.category.default": "General",
 
   "text.autoconfig.clientchatchannels.option.defaultLocalChannelRadius": "Default Local Channel Range",
-  "text.autoconfig.clientchatchannels.option.defaultLocalChannelRadius.@Tooltip[0]": "The default radius (in blocks) used for local channel messages when no custom radius is set.",
-  "text.autoconfig.clientchatchannels.option.defaultLocalChannelRadius.@Tooltip[1]": "Specifies the maximum distance from the player within which other players can see the messages.",
+  "text.autoconfig.clientchatchannels.option.defaultLocalChannelRadius.@Tooltip": "The default radius used for local channel\nmessages when no custom radius is set.\nSpecifies the maximum distance (in blocks)\nfrom the player within which other\nplayers can see the messages.",
 
   "text.autoconfig.clientchatchannels.option.channelIndicatorType": "Channel Indicator Type",
-  "text.autoconfig.clientchatchannels.option.channelIndicatorType.@Tooltip": "The type of channel indicator to show when typing a message in chat.",
+  "text.autoconfig.clientchatchannels.option.channelIndicatorType.@Tooltip": "The type of channel indicator to show\nwhen typing a message in chat.\n\nNONE - No indicator\nSHORT - Single-letter indicator\nLONG - Full channel name",
 
   "text.autoconfig.clientchatchannels.option.channelIndicatorTooltipType": "Channel Indicator Tooltip Type",
-  "text.autoconfig.clientchatchannels.option.channelIndicatorTooltipType.@Tooltip": "The type of tooltip that appears when hovering over the channel indicator."
+  "text.autoconfig.clientchatchannels.option.channelIndicatorTooltipType.@Tooltip": "The type of tooltip that appears when\nhovering over the channel indicator.\n\nNONE - No tooltip\nMINIMAL - Channel name only\nSIMPLE - Basic channel details\nDETAILED - Full channel details"
 }

@@ -42,12 +42,11 @@
   "text.autoconfig.clientchatchannels.category.default": "General",
 
   "text.autoconfig.clientchatchannels.option.defaultLocalChannelRadius": "Defolt lolcal channul ranj",
-  "text.autoconfig.clientchatchannels.option.defaultLocalChannelRadius.@Tooltip[0]": "Teh defolt raydius (in blokks) of lolcal channul messges wen u hav no custom raydius.",
-  "text.autoconfig.clientchatchannels.option.defaultLocalChannelRadius.@Tooltip[1]": "Dis da max distanz from te playr wer othr playrz kan c teh messges.",
+  "text.autoconfig.clientchatchannels.option.defaultLocalChannelRadius.@Tooltip": "Teh defolt raydius of lolcal channul\nmessges wen u hav no custom raydius.\nDis da max distanz (in blokks) from te playr\nwer othr playrz kan c teh messges.",
 
   "text.autoconfig.clientchatchannels.option.channelIndicatorType": "Channul indicator type",
-  "text.autoconfig.clientchatchannels.option.channelIndicatorType.@Tooltip": "Da type of channul indicator to show wen typing messges in cat.",
+  "text.autoconfig.clientchatchannels.option.channelIndicatorType.@Tooltip": "Da type of channul indicator to show\nwen typing messges in cat.",
 
   "text.autoconfig.clientchatchannels.option.channelIndicatorTooltipType": "Channul indicator tooltip type",
-  "text.autoconfig.clientchatchannels.option.channelIndicatorTooltipType.@Tooltip": "Da type of tooltip dat appearz wen ur mouse is over da channel indicator."
+  "text.autoconfig.clientchatchannels.option.channelIndicatorTooltipType.@Tooltip": "Da type of tooltip dat appearz wen\nur mouse is over da channul indicator."
 }
