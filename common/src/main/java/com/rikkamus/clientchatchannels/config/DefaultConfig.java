@@ -11,6 +11,8 @@ public class DefaultConfig implements ClientChatChannelsConfig {
 
     public static final ChannelIndicatorTooltipType DEFAULT_CHANNEL_INDICATOR_TOOLTIP_TYPE = ChannelIndicatorTooltipType.DETAILED;
 
+    public static final boolean DEFAULT_CHANNEL_SWITCH_LOGGING_ENABLED = true;
+
     @Override
     public double getDefaultLocalChannelRadius() {
         return DefaultConfig.DEFAULT_LOCAL_CHANNEL_RADIUS;
@@ -24,6 +26,11 @@ public class DefaultConfig implements ClientChatChannelsConfig {
     @Override
     public ChannelIndicatorTooltipType getChannelIndicatorTooltipType() {
         return DefaultConfig.DEFAULT_CHANNEL_INDICATOR_TOOLTIP_TYPE;
+    }
+
+    @Override
+    public boolean isChannelSwitchLoggingEnabled() {
+        return DefaultConfig.DEFAULT_CHANNEL_SWITCH_LOGGING_ENABLED;
     }
 
 }

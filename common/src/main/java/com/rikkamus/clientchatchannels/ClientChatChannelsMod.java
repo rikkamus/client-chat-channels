@@ -8,6 +8,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import net.minecraft.client.KeyMapping;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import org.lwjgl.glfw.GLFW;
 import org.slf4j.Logger;
@@ -105,27 +106,31 @@ public class ClientChatChannelsMod {
 
     public void switchToGlobalChannel() {
         this.dispatcher.setGlobalChannel();
-        ChatLogger.log(this.dispatcher.getStatus(false));
+        tryPrintChannelSwitchStatus(this.dispatcher.getStatus(false));
     }
 
     public void switchToLocalChannel() {
         this.dispatcher.setLocalChannel(ConfigValueSupplier.ofConfigValue(this.config::getDefaultLocalChannelRadius));
-        ChatLogger.log(this.dispatcher.getStatus(false));
+        tryPrintChannelSwitchStatus(this.dispatcher.getStatus(false));
     }
 
     public void switchToLocalChannel(double radius) {
         this.dispatcher.setLocalChannel(ConfigValueSupplier.ofOverriddenValue(radius));
-        ChatLogger.log(this.dispatcher.getStatus(false));
+        tryPrintChannelSwitchStatus(this.dispatcher.getStatus(false));
     }
 
     public void switchToDirectChannel() {
         this.dispatcher.trySetDirectChannelToNearestPlayer();
-        ChatLogger.log(this.dispatcher.getStatus(false));
+        tryPrintChannelSwitchStatus(this.dispatcher.getStatus(false));
     }
 
     public void switchToDirectChannel(SortedSet<String> recipients) {
         this.dispatcher.setDirectChannel(recipients);
-        ChatLogger.log(this.dispatcher.getStatus(false));
+        tryPrintChannelSwitchStatus(this.dispatcher.getStatus(false));
+    }
+
+    private void tryPrintChannelSwitchStatus(Component status) {
+        if (this.config.isChannelSwitchLoggingEnabled()) ChatLogger.log(status);
     }
 
     public void printStatus() {
