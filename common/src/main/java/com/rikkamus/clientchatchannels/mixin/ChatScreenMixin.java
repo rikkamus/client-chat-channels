@@ -12,6 +12,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
@@ -21,23 +22,30 @@ public class ChatScreenMixin extends Screen {
     @Shadow
     private EditBox input;
 
+    @Unique
+    private ChannelIndicatorType clientchatchannels$indicatorType;
+
     private ChatScreenMixin() {
         super(null);
     }
 
+    @Inject(method = "init", at = @At("HEAD"))
+    private void onInit(CallbackInfo ci) {
+        this.clientchatchannels$indicatorType = ClientChatChannelsMod.getInstance().getConfig().getChannelIndicatorType();
+    }
+
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screens/Screen;render(Lnet/minecraft/client/gui/GuiGraphics;IIF)V"))
     private void onRender(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick, CallbackInfo ci) {
-        final ClientChatChannelsMod mod = ClientChatChannelsMod.getInstance();
+        if (!this.clientchatchannels$indicatorType.isEnabled()) return;
 
-        final ChannelIndicatorType type = mod.getConfig().getChannelIndicatorType();
-        if (!type.isEnabled()) return;
+        final ClientChatChannelsMod mod = ClientChatChannelsMod.getInstance();
 
         final int x = 4;
         final int y = this.height - 12;
         final int rightPadding = 4;
 
         final ChannelIndicator indicator = mod.getDispatcher().getChannel().getChannelIndicator();
-        final Component indicatorComponent = type.selectIndicatorComponent(indicator);
+        final Component indicatorComponent = this.clientchatchannels$indicatorType.selectIndicatorComponent(indicator);
 
         final Font font = this.minecraft.fontFilterFishy;
 
