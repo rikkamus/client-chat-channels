@@ -48,5 +48,8 @@
   "text.autoconfig.clientchatchannels.option.channelIndicatorType.@Tooltip": "The type of channel indicator to show\nwhen typing a message in chat.\n\nNONE - No indicator\nSHORT - Single-letter indicator\nLONG - Full channel name",
 
   "text.autoconfig.clientchatchannels.option.channelIndicatorTooltipType": "Channel Indicator Tooltip Type",
-  "text.autoconfig.clientchatchannels.option.channelIndicatorTooltipType.@Tooltip": "The type of tooltip that appears when\nhovering over the channel indicator.\n\nNONE - No tooltip\nMINIMAL - Channel name only\nSIMPLE - Basic channel details\nDETAILED - Full channel details"
+  "text.autoconfig.clientchatchannels.option.channelIndicatorTooltipType.@Tooltip": "The type of tooltip that appears when\nhovering over the channel indicator.\n\nNONE - No tooltip\nMINIMAL - Channel name only\nSIMPLE - Basic channel details\nDETAILED - Full channel details",
+
+  "text.autoconfig.clientchatchannels.option.channelSwitchLoggingEnabled": "Show Channel Switch Notifications",
+  "text.autoconfig.clientchatchannels.option.channelSwitchLoggingEnabled.@Tooltip": "Enables messages that display the current\nchannel after a channel switch."
 }
