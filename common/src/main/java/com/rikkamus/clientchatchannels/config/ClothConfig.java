@@ -40,6 +40,11 @@ public class ClothConfig implements ClientChatChannelsConfig, ConfigData {
         DETAILED - Full channel details""")
     private ChannelIndicatorTooltipType channelIndicatorTooltipType = DefaultConfig.DEFAULT_CHANNEL_INDICATOR_TOOLTIP_TYPE;
 
+    @ConfigEntry.Category("default")
+    @ConfigEntry.Gui.Tooltip
+    @Comment("Enables messages that display the current channel after a channel switch.")
+    private boolean channelSwitchLoggingEnabled = DefaultConfig.DEFAULT_CHANNEL_SWITCH_LOGGING_ENABLED;
+
     @Override
     public void validatePostLoad() {
         validate();
@@ -77,6 +82,11 @@ public class ClothConfig implements ClientChatChannelsConfig, ConfigData {
     @Override
     public ChannelIndicatorTooltipType getChannelIndicatorTooltipType() {
         return this.channelIndicatorTooltipType;
+    }
+
+    @Override
+    public boolean isChannelSwitchLoggingEnabled() {
+        return this.channelSwitchLoggingEnabled;
     }
 
 }
