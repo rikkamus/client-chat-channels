@@ -11,4 +11,6 @@ public interface ClientChatChannelsConfig {
 
     ChannelIndicatorTooltipType getChannelIndicatorTooltipType();
 
+    boolean isChannelSwitchLoggingEnabled();
+
 }
