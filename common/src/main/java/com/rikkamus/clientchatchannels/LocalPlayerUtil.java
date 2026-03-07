@@ -3,6 +3,7 @@ package com.rikkamus.clientchatchannels;
 import lombok.experimental.UtilityClass;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.world.scores.PlayerTeam;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -30,4 +31,14 @@ public class LocalPlayerUtil {
                           .map(player -> player.getGameProfile().name());
     }
 
+    public static SortedSet<String> getNamesOfPlayersInTeam() {
+        final LocalPlayer localPlayer = Minecraft.getInstance().player;
+        final PlayerTeam team = localPlayer.getTeam();
+
+        return localPlayer.level().players()
+                          .stream()
+                          .filter(player -> !localPlayer.equals(player) && team == player.getTeam())
+                          .map(player -> player.getGameProfile().name())
+                          .collect(Collectors.toCollection(TreeSet::new));
+    }
 }

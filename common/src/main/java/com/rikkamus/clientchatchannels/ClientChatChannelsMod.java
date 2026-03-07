@@ -28,6 +28,7 @@ public class ClientChatChannelsMod {
     private static KeyMapping GLOBAL_CHANNEL_KEY_MAPPING;
     private static KeyMapping LOCAL_CHANNEL_KEY_MAPPING;
     private static KeyMapping DIRECT_CHANNEL_KEY_MAPPING;
+    private static KeyMapping TEAM_CHANNEL_KEY_MAPPING;
     private static KeyMapping CHANNEL_STATUS_KEY_MAPPING;
 
     private static ClientChatChannelsMod INSTANCE;
@@ -71,6 +72,17 @@ public class ClientChatChannelsMod {
         return DIRECT_CHANNEL_KEY_MAPPING;
     }
 
+    public static KeyMapping getTeamChannelKeyMapping() {
+        if (TEAM_CHANNEL_KEY_MAPPING == null) TEAM_CHANNEL_KEY_MAPPING = new KeyMapping(
+                "key.clientchatchannels.team",
+                InputConstants.Type.KEYSYM,
+                GLFW.GLFW_KEY_K,
+                getKeyCategory()
+        );
+
+        return TEAM_CHANNEL_KEY_MAPPING;
+    }
+
     public static KeyMapping getChannelStatusKeyMapping() {
         if (CHANNEL_STATUS_KEY_MAPPING == null) CHANNEL_STATUS_KEY_MAPPING = new KeyMapping(
             "key.clientchatchannels.status",
@@ -86,6 +98,7 @@ public class ClientChatChannelsMod {
         registry.accept(getGlobalChannelKeyMapping());
         registry.accept(getLocalChannelKeyMapping());
         registry.accept(getDirectChannelKeyMapping());
+        registry.accept(getTeamChannelKeyMapping());
         registry.accept(getChannelStatusKeyMapping());
     }
 
@@ -129,6 +142,11 @@ public class ClientChatChannelsMod {
         tryPrintChannelSwitchStatus(this.dispatcher.getStatus(false));
     }
 
+    public void switchToTeamChannel() {
+        this.dispatcher.trySetTeamChannel();
+        tryPrintChannelSwitchStatus(this.dispatcher.getStatus(false));
+    }
+
     private void tryPrintChannelSwitchStatus(Component status) {
         if (this.config.isChannelSwitchLoggingEnabled()) ChatLogger.log(status);
     }
@@ -141,6 +159,7 @@ public class ClientChatChannelsMod {
         if (ClientChatChannelsMod.getGlobalChannelKeyMapping().consumeClick()) switchToGlobalChannel();
         else if (ClientChatChannelsMod.getLocalChannelKeyMapping().consumeClick()) switchToLocalChannel();
         else if (ClientChatChannelsMod.getDirectChannelKeyMapping().consumeClick()) switchToDirectChannel();
+        else if (ClientChatChannelsMod.getTeamChannelKeyMapping().consumeClick()) switchToTeamChannel();
         else if (ClientChatChannelsMod.getChannelStatusKeyMapping().consumeClick()) printStatus();
     }
 
