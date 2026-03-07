@@ -77,6 +77,12 @@ public class ClientChatChannelsModNeoForge {
 
             return Command.SINGLE_SUCCESS;
         }))));
+
+        // Register /channel team
+        event.getDispatcher().register(Commands.literal("channel").then(Commands.literal("team").executes(context -> {
+            ClientChatChannelsMod.getInstance().switchToTeamChannel();
+            return Command.SINGLE_SUCCESS;
+        })));
     }
 
     @SubscribeEvent
