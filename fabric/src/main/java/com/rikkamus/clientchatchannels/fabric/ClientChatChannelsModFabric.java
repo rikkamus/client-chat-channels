@@ -68,6 +68,12 @@ public class ClientChatChannelsModFabric implements ClientModInitializer {
 
                 return Command.SINGLE_SUCCESS;
             }))));
+
+            // Register /channel team
+            dispatcher.register(ClientCommandManager.literal("channel").then(ClientCommandManager.literal("team").executes(context -> {
+                ClientChatChannelsMod.getInstance().switchToTeamChannel();
+                return Command.SINGLE_SUCCESS;
+            })));
         });
 
         ClientTickEvents.END_CLIENT_TICK.register(minecraft -> ClientChatChannelsMod.getInstance().handleChannelHotkeys());

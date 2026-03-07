@@ -3,8 +3,11 @@ package com.rikkamus.clientchatchannels;
 import com.rikkamus.clientchatchannels.channel.*;
 import com.rikkamus.clientchatchannels.config.ConfigValueSupplier;
 import lombok.Getter;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.world.entity.vehicle.minecart.Minecart;
+import net.minecraft.world.scores.PlayerTeam;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -36,6 +39,15 @@ public class InterceptingMessageDispatcher {
 
     public void setDirectChannel(SequencedCollection<String> recipients) {
         this.channel = new DirectChatChannel(recipients);
+    }
+
+    public void trySetTeamChannel() {
+        Optional<PlayerTeam> team = Optional.ofNullable(Minecraft.getInstance().player.getTeam());
+        team.ifPresentOrElse(t -> setTeamChannel(), () -> ChatLogger.logTranslatable("clientchatchannels.dispatcher.message.not_in_team", MessageColors.ERROR));
+    }
+
+    public void setTeamChannel() {
+        this.channel = new TeamChatChannel();
     }
 
     public Component getStatus(boolean includeDetails) {

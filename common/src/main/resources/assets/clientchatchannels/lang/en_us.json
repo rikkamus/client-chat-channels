@@ -1,5 +1,6 @@
 {
   "clientchatchannels.dispatcher.message.no_recipients": "No nearby players found.",
+  "clientchatchannels.dispatcher.message.not_in_team": "Not in a team.",
   "clientchatchannels.dispatcher.status.current_channel": "Current channel: %s",
 
   "clientchatchannels.channel.global.display_name": "Global",
@@ -25,6 +26,15 @@
   "clientchatchannels.channel.direct.message.status.no_recipients": "Nobody can see your messages.",
   "clientchatchannels.channel.direct.message.tooltip.no_recipients": "No recipients",
 
+  "clientchatchannels.channel.team.display_name": "Team",
+  "clientchatchannels.channel.team.display_name_in_team": "Team (%s)",
+  "clientchatchannels.channel.team.display_name_no_team": "Team (No team)",
+  "clientchatchannels.channel.team.indicator_short": "[T]",
+  "clientchatchannels.channel.team.indicator_long": "[TEAM]",
+  "clientchatchannels.channel.team.status_header": "Players that can see your messages:",
+  "clientchatchannels.channel.team.message.intercept.no_recipients": "No team members found.",
+  "clientchatchannels.channel.team.message.status.no_recipients": "Nobody can see your messages.",
+
   "clientchatchannels.argument.word_list.unexpected_symbol": "Unexpected symbol '%s'",
 
   "key.categories.clientchatchannels.default": "Client Chat Channels",
@@ -32,6 +42,7 @@
   "key.clientchatchannels.global": "Switch channel to Global",
   "key.clientchatchannels.local": "Switch channel to Local",
   "key.clientchatchannels.direct": "Switch channel to Direct",
+  "key.clientchatchannels.team": "Switch channel to Team",
   "key.clientchatchannels.status": "Show current channel status",
 
   "modmenu.nameTranslation.clientchatchannels": "Client Chat Channels",
