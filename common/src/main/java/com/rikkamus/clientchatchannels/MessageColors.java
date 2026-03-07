@@ -14,5 +14,6 @@ public class MessageColors {
     public static final ChatFormatting INDICATOR_GLOBAL = ChatFormatting.AQUA;
     public static final ChatFormatting INDICATOR_LOCAL = ChatFormatting.GREEN;
     public static final ChatFormatting INDICATOR_DIRECT = ChatFormatting.YELLOW;
+    public static final ChatFormatting INDICATOR_TEAM = ChatFormatting.LIGHT_PURPLE;
 
 }
