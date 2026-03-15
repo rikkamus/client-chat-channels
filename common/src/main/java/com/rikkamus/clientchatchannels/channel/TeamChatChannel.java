@@ -30,7 +30,7 @@ public class TeamChatChannel implements ChatChannel {
     public Component getDisplayName() {
         PlayerTeam team = Minecraft.getInstance().player.getTeam();
 
-        if (team != null) return Component.translatable("clientchatchannels.channel.team.display_name_in_team", team.getName());
+        if (team != null) return Component.translatable("clientchatchannels.channel.team.display_name_in_team", team.getDisplayName());
         else return Component.translatable("clientchatchannels.channel.team.display_name_no_team");
     }
 
