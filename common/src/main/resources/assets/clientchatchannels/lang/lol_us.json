@@ -32,7 +32,7 @@
   "clientchatchannels.channel.team.indicator_short": "[T]",
   "clientchatchannels.channel.team.indicator_long": "[teem]",
   "clientchatchannels.channel.team.status_header": "playrz dat kan see ur messges:",
-  "clientchatchannels.channel.team.message.intercept.no_recipients": "nobuddy can c ur messges :(",
+  "clientchatchannels.channel.team.message.intercept.not_in_team": "not in teem",
   "clientchatchannels.channel.team.message.status.no_recipients": "nu recipins",
   "clientchatchannels.channel.team.message.tooltip.no_recipients": "nu teemmates",
 
