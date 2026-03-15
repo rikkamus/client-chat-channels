@@ -41,4 +41,9 @@ public class LocalPlayerUtil {
                           .map(player -> player.getGameProfile().name())
                           .collect(Collectors.toCollection(TreeSet::new));
     }
+
+    public static boolean isPlayerInTeam() {
+        return Minecraft.getInstance().player.getTeam() != null;
+    }
+
 }
