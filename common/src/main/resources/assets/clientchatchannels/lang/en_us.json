@@ -34,6 +34,7 @@
   "clientchatchannels.channel.team.status_header": "Players that can see your messages:",
   "clientchatchannels.channel.team.message.intercept.no_recipients": "No team members found.",
   "clientchatchannels.channel.team.message.status.no_recipients": "Nobody can see your messages.",
+  "clientchatchannels.channel.team.message.tooltip.no_recipients": "No teammates",
 
   "clientchatchannels.argument.word_list.unexpected_symbol": "Unexpected symbol '%s'",
 
