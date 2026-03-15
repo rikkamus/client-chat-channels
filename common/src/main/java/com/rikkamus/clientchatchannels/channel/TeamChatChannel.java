@@ -40,7 +40,7 @@ public class TeamChatChannel implements ChatChannel {
                 List.of(Component.translatable("clientchatchannels.channel.team.display_name").withStyle(MessageColors.INDICATOR_TEAM)),
                 List.of(getDisplayName().copy().withStyle(MessageColors.INDICATOR_TEAM)),
                 Stream.concat(
-                        Stream.of(Component.translatable("clientchatchannels.channel.team.display_name").withStyle(MessageColors.INDICATOR_TEAM)),
+                        Stream.of(getDisplayName().copy().withStyle(MessageColors.INDICATOR_TEAM)),
                         getTooltipRecipientStream()
                 ).toList()
         );
