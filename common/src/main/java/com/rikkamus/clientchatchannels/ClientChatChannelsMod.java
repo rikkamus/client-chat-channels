@@ -74,10 +74,10 @@ public class ClientChatChannelsMod {
 
     public static KeyMapping getTeamChannelKeyMapping() {
         if (TEAM_CHANNEL_KEY_MAPPING == null) TEAM_CHANNEL_KEY_MAPPING = new KeyMapping(
-                "key.clientchatchannels.team",
-                InputConstants.Type.KEYSYM,
-                GLFW.GLFW_KEY_K,
-                getKeyCategory()
+            "key.clientchatchannels.team",
+            InputConstants.Type.KEYSYM,
+            GLFW.GLFW_KEY_K,
+            getKeyCategory()
         );
 
         return TEAM_CHANNEL_KEY_MAPPING;
