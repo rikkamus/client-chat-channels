@@ -32,7 +32,7 @@
   "clientchatchannels.channel.team.indicator_short": "[T]",
   "clientchatchannels.channel.team.indicator_long": "[TEAM]",
   "clientchatchannels.channel.team.status_header": "Players that can see your messages:",
-  "clientchatchannels.channel.team.message.intercept.no_recipients": "No team members found.",
+  "clientchatchannels.channel.team.message.intercept.not_in_team": "Not in a team.",
   "clientchatchannels.channel.team.message.status.no_recipients": "Nobody can see your messages.",
   "clientchatchannels.channel.team.message.tooltip.no_recipients": "No teammates",
 

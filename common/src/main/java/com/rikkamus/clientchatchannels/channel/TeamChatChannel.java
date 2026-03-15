@@ -18,10 +18,8 @@ public class TeamChatChannel implements ChatChannel {
     public void interceptMessage(CancelableMessage message) {
         message.cancel();
 
-        Set<String> recipients = LocalPlayerUtil.getNamesOfPlayersInTeam();
-
-        if (recipients.isEmpty()) {
-            ChatLogger.logTranslatable("clientchatchannels.channel.team.message.intercept.no_recipients", MessageColors.ERROR);
+        if (!LocalPlayerUtil.isPlayerInTeam()) {
+            ChatLogger.logTranslatable("clientchatchannels.channel.team.message.intercept.not_in_team", MessageColors.ERROR);
             return;
         }
 
