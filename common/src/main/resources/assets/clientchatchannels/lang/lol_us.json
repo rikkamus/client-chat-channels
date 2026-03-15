@@ -1,5 +1,6 @@
 {
   "clientchatchannels.dispatcher.message.no_recipients": "nu nearbai playrz wuz findz",
+  "clientchatchannels.dispatcher.message.not_in_team": "not in teem",
   "clientchatchannels.dispatcher.status.current_channel": "currnt channul: %s",
 
   "clientchatchannels.channel.global.display_name": "golbal",
@@ -25,6 +26,15 @@
   "clientchatchannels.channel.direct.message.status.no_recipients": "nobuddy can c ur messges :(",
   "clientchatchannels.channel.direct.message.tooltip.no_recipients": "nu recipins",
 
+  "clientchatchannels.channel.team.display_name": "teem",
+  "clientchatchannels.channel.team.display_name_in_team": "teem (%s)",
+  "clientchatchannels.channel.team.display_name_no_team": "teem (nu teem)",
+  "clientchatchannels.channel.team.indicator_short": "[T]",
+  "clientchatchannels.channel.team.indicator_long": "[teem]",
+  "clientchatchannels.channel.team.status_header": "playrz dat kan see ur messges:",
+  "clientchatchannels.channel.team.message.intercept.no_recipients": "nobuddy can c ur messges :(",
+  "clientchatchannels.channel.team.message.status.no_recipients": "nu recipins",
+
   "clientchatchannels.argument.word_list.unexpected_symbol": "unikspekted symbol '%s'",
 
   "key.categories.clientchatchannels.default": "Clyunt Cat Channuls",
@@ -32,6 +42,7 @@
   "key.clientchatchannels.global": "YELL VERRY LOUDLEE",
   "key.clientchatchannels.local": "meow all sneakzy liek",
   "key.clientchatchannels.direct": "Talkz telepathikalee",
+  "key.clientchatchannels.team": "speek to ur teem",
   "key.clientchatchannels.status": "Chek ur surroundingz",
 
   "modmenu.nameTranslation.clientchatchannels": "Clyunt Cat Channuls",
