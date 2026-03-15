@@ -53,6 +53,8 @@ public class TeamChatChannel implements ChatChannel {
     }
 
     private Stream<Component> getTooltipRecipientStream() {
+        if (!LocalPlayerUtil.isPlayerInTeam()) return Stream.of(Component.translatable("clientchatchannels.channel.team.message.tooltip.not_in_team").withStyle(MessageColors.ERROR));
+
         Set<String> recipients = LocalPlayerUtil.getNamesOfPlayersInTeam();
 
         if (recipients.isEmpty()) return Stream.of(Component.translatable("clientchatchannels.channel.team.message.tooltip.no_recipients").withStyle(MessageColors.ERROR));
