@@ -15,6 +15,12 @@ Messages are only sent to players within a specified distance from you.
 ### ✉️ Direct
 Messages are sent exclusively to one or more specific players.
 
+### 👥 Team
+Messages are only sent to your teammates.
+
+## How It Works
+When using a channel other than global, the mod automatically converts your chat messages into private messages using the <code>/&zwj;msg</code> or <code>/&zwj;teammsg</code> command and sends them only to the intended recipients.
+
 ## Commands
 You can use commands to switch between different channels:
 
@@ -23,6 +29,7 @@ You can use commands to switch between different channels:
 | <code>/&zwj;channel&nbsp;global</code>                         | Switches to the global channel.                                                                                                       |
 | <code>/&zwj;channel&nbsp;local&nbsp;&lt;radius&gt;</code>      | Switches to the local channel. If the radius is omitted, the default radius will be used.                                             |
 | <code>/&zwj;channel&nbsp;direct&nbsp;&lt;recipients&gt;</code> | Switches to the direct channel. If recipients are omitted, the nearest player will be selected. Recipients should be space-separated. |
+| <code>/&zwj;channel&nbsp;team</code>                           | Switches to the team channel.                                                                                                         |
 | <code>/&zwj;channel&nbsp;status</code>                         | Displays information about the currently selected channel.                                                                            |
 
 ## Hotkeys
@@ -33,6 +40,7 @@ You can also use hotkeys to quickly switch between channels:
 | Global           | U              |
 | Local            | I              |
 | Direct           | O              |
+| Team             | K              |
 | Show status      | *Not bound*    |
 
 ## Configuration
