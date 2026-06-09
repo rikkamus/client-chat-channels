@@ -11,10 +11,10 @@ import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigHolder;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
+import net.fabricmc.fabric.api.client.command.v2.ClientCommands;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.fabricmc.fabric.api.client.message.v1.ClientSendMessageEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientLoginConnectionEvents;
 import net.fabricmc.fabric.api.event.Event;
@@ -32,35 +32,35 @@ public class ClientChatChannelsModFabric implements ClientModInitializer {
     public void onInitializeClient() {
         ClientChatChannelsMod.init(buildConfig());
 
-        ClientChatChannelsMod.registerKeyMappings(KeyBindingHelper::registerKeyBinding);
+        ClientChatChannelsMod.registerKeyMappings(KeyMappingHelper::registerKeyMapping);
 
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, buildContext) -> {
             // Register /channel status
-            dispatcher.register(ClientCommandManager.literal("channel").then(ClientCommandManager.literal("status").executes(context -> {
+            dispatcher.register(ClientCommands.literal("channel").then(ClientCommands.literal("status").executes(context -> {
                 ClientChatChannelsMod.getInstance().printStatus();
                 return Command.SINGLE_SUCCESS;
             })));
 
             // Register /channel global
-            dispatcher.register(ClientCommandManager.literal("channel").then(ClientCommandManager.literal("global").executes(context -> {
+            dispatcher.register(ClientCommands.literal("channel").then(ClientCommands.literal("global").executes(context -> {
                 ClientChatChannelsMod.getInstance().switchToGlobalChannel();
                 return Command.SINGLE_SUCCESS;
             })));
 
             // Register /channel local
-            dispatcher.register(ClientCommandManager.literal("channel").then(ClientCommandManager.literal("local").executes(context -> {
+            dispatcher.register(ClientCommands.literal("channel").then(ClientCommands.literal("local").executes(context -> {
                 ClientChatChannelsMod.getInstance().switchToLocalChannel();
                 return Command.SINGLE_SUCCESS;
-            }).then(ClientCommandManager.argument("radius", DoubleArgumentType.doubleArg(0)).executes(context -> {
+            }).then(ClientCommands.argument("radius", DoubleArgumentType.doubleArg(0)).executes(context -> {
                 ClientChatChannelsMod.getInstance().switchToLocalChannel(context.getArgument("radius", Double.class));
                 return Command.SINGLE_SUCCESS;
             }))));
 
             // Register /channel direct
-            dispatcher.register(ClientCommandManager.literal("channel").then(ClientCommandManager.literal("direct").executes(context -> {
+            dispatcher.register(ClientCommands.literal("channel").then(ClientCommands.literal("direct").executes(context -> {
                 ClientChatChannelsMod.getInstance().switchToDirectChannel();
                 return Command.SINGLE_SUCCESS;
-            }).then(ClientCommandManager.argument("recipients", new PlayerListArgument()).executes(context -> {
+            }).then(ClientCommands.argument("recipients", new PlayerListArgument()).executes(context -> {
                 @SuppressWarnings("unchecked")
                 TreeSet<String> recipients = new TreeSet<String>(context.getArgument("recipients", List.class));
 
@@ -70,7 +70,7 @@ public class ClientChatChannelsModFabric implements ClientModInitializer {
             }))));
 
             // Register /channel team
-            dispatcher.register(ClientCommandManager.literal("channel").then(ClientCommandManager.literal("team").executes(context -> {
+            dispatcher.register(ClientCommands.literal("channel").then(ClientCommands.literal("team").executes(context -> {
                 ClientChatChannelsMod.getInstance().switchToTeamChannel();
                 return Command.SINGLE_SUCCESS;
             })));

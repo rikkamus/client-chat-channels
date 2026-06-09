@@ -1,7 +1,7 @@
 plugins {
-    id 'dev.architectury.loom' version '1.13-SNAPSHOT' apply false
-    id 'architectury-plugin' version '3.4-SNAPSHOT'
-    id 'com.gradleup.shadow' version '8.3.6' apply false
+    id 'dev.architectury.loom' version '1.14-SNAPSHOT' apply false
+    id 'architectury-plugin' version '3.5-SNAPSHOT'
+    id 'com.gradleup.shadow' version '9.4.2' apply false
 }
 
 architectury {
@@ -14,7 +14,7 @@ allprojects {
 }
 
 subprojects {
-    apply plugin: 'dev.architectury.loom'
+    apply plugin: 'dev.architectury.loom-no-remap'
     apply plugin: 'architectury-plugin'
 
     base {
@@ -36,10 +36,6 @@ subprojects {
         }
     }
 
-    loom {
-        silentMojangMappingsLicense()
-    }
-
     dependencies {
         compileOnly("org.projectlombok:lombok:$rootProject.lombok_version")
         annotationProcessor("org.projectlombok:lombok:$rootProject.lombok_version")
@@ -48,7 +44,6 @@ subprojects {
         testAnnotationProcessor("org.projectlombok:lombok:$rootProject.lombok_version")
 
         minecraft "net.minecraft:minecraft:$rootProject.minecraft_version"
-        mappings loom.officialMojangMappings()
     }
 
     java {
@@ -57,11 +52,11 @@ subprojects {
         // If you remove this line, sources will not be generated.
         withSourcesJar()
 
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
+        sourceCompatibility = JavaVersion.VERSION_25
+        targetCompatibility = JavaVersion.VERSION_25
     }
 
     tasks.withType(JavaCompile).configureEach {
-        it.options.release = 21
+        it.options.release = 25
     }
 }

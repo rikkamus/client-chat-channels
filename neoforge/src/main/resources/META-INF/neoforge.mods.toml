@@ -20,20 +20,20 @@ config = "clientchatchannels.mixins.json"
 [[dependencies.clientchatchannels]]
 modId = "neoforge"
 type = "required"
-versionRange = "[21.11,)"
+versionRange = "[26.1,)"
 ordering = "NONE"
 side = "CLIENT"
 
 [[dependencies.clientchatchannels]]
 modId = "minecraft"
 type = "required"
-versionRange = "[1.21.11, 1.22)"
+versionRange = "[26.1, 26.2)"
 ordering = "NONE"
 side = "CLIENT"
 
 [[dependencies.clientchatchannels]]
 modId="cloth_config"
 type = "optional"
-versionRange="[21.11.150,)"
+versionRange="[26.1.154,)"
 ordering="AFTER"
 side="CLIENT"
