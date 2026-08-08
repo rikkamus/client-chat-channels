@@ -21,7 +21,7 @@ public class ChatLogger {
     }
 
     public static void log(Component component) {
-        if (Minecraft.getInstance().player != null) Minecraft.getInstance().gui.getChat().addClientSystemMessage(component);
+        if (Minecraft.getInstance().player != null) Minecraft.getInstance().gui.hud.getChat().addClientSystemMessage(component);
     }
 
 }
